@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import underConstructionImg from "../assets/img/under-construction.svg";
 ---
 
 <Layout title="Welcome to Indonesian Society for Evolutionary Studies (ISES)">
@@ -7,11 +9,7 @@ import Layout from "../layouts/Layout.astro";
     <h1>
       Welcome to <span class="text-gradient"> the Official ISES Website</span>
     </h1>
-    <img
-      src="../../public/under-construction.svg"
-      alt="Under Construction"
-      width="250"
-    />
+    <Image src={underConstructionImg} alt="Under Construction" width="160" />
     <p>🚧 This site is under construction 🚧</p>
     <p class="instructions">
       This site will host all the information about the ISES organization and
