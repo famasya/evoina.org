@@ -1,5 +1,4 @@
 {
-  "name": "",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,8 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.16.8",
     "@astrojs/check": "^0.9.4",
+    "astro": "^4.16.8",
     "typescript": "^5.6.3"
-  }
+  },
+  "packageManager": "yarn@4.5.1"
 }
