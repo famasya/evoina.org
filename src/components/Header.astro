@@ -27,7 +27,9 @@ const currentUrl = Astro.request.url;
           <span class="font-semibold">evoina</span>.org
         </a>
       </>
-      <div class="flex flex-row gap-2 bg-white rounded-lg text-black px-2 py-1">
+      <div
+        class="flex flex-col w-full sm:w-auto sm:flex-row gap-2 bg-white rounded-lg text-black text-center px-2 py-1"
+      >
         {
           navigations.map((navigation) => (
             <a
