@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  href?: string;
+  extendClass?: string;
+}
+
+const { title, href, extendClass } = Astro.props;
+---
+
+<a
+  href={href}
+  class={`text-eggshell bg-gradient-to-t from-reseda_green-300 to-reseda_green hover:from-reseda_green hover:to-reseda_green px-4 py-2 rounded-md mt-10 ${extendClass}`}
+  >{title}</a
+>

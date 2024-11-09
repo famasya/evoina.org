@@ -1,0 +1,51 @@
+---
+const navigations = [
+  { link: "/", name: "Beranda" },
+  { link: "/about", name: "Mengenal ISES" },
+];
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+---
+
+<header class="bg-[url('/header.jpg')] bg-cover h-96 bg-center">
+  <div
+    class="h-full bg-gradient-to-r from-black/70 to-black/10 text-white flex flex-col p-4"
+  >
+    <div
+      class="border-b border-eggshell/50 pb-2 text-lg px-8 flex flex-col gap-2 sm:flex-row justify-between items-center"
+    >
+      <>
+        <a href="/">
+          <span class="font-semibold">evoina</span>.org
+        </a>
+      </>
+      <div class="flex flex-row gap-2 bg-white rounded-lg text-black px-2 py-1">
+        {
+          navigations.map((navigation) => (
+            <a
+              href={navigation.link}
+              class={`hover:bg-eggshell rounded-lg py-1 px-4 text-sm font-normal ${currentPath === navigation.link.slice(1) ? "bg-eggshell text-black" : ""}`}
+            >
+              {navigation.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div
+      class="h-full flex sm:flex-row flex-col-reverse items-center px-8 justify-between py-8"
+    >
+      <div>
+        <h1
+          class="text-4xl text-center sm:text-left sm:text-5xl flex flex-col gap-1 font-light"
+        >
+          <span class="text-eggshell">Indonesian Society</span>
+          <span class="text-white">for Evolutionary Studies</span>
+          <span class="text-white text-2xl"> / ISES</span>
+        </h1>
+      </div>
+      <div class="w-24"><img src="/ises-logo.png" /></div>
+    </div>
+  </div>
+</header>
