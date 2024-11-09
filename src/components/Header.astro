@@ -1,14 +1,20 @@
 ---
 const navigations = [
-  { link: "/", name: "Beranda" },
-  { link: "/about", name: "Mengenal ISES" },
+  { link: "/about", name: "Latar Belakang" },
+  { link: "/resources", name: "Resources" },
 ];
 
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1);
 ---
 
-<header class="bg-[url('/header.jpg')] bg-cover h-96 bg-center">
+<header class="bg-[url('/header.webp')] bg-cover h-96 bg-center relative">
+  <div class="text-white/40 text-xs absolute bottom-1 right-1 font-light">
+    Ilustrasi oleh <a
+      href="https://unsplash.com/photos/a-forest-filled-with-lots-of-tall-trees-BM51hWoI3PI"
+      target="_blank">Roberto Lendon</a
+    >
+  </div>
   <div
     class="h-full bg-gradient-to-r from-black/70 to-black/10 text-white flex flex-col p-4"
   >
@@ -25,7 +31,7 @@ const currentPath = pathname.slice(1);
           navigations.map((navigation) => (
             <a
               href={navigation.link}
-              class={`hover:bg-eggshell rounded-lg py-1 px-4 text-sm font-normal ${currentPath === navigation.link.slice(1) ? "bg-eggshell text-black" : ""}`}
+              class={`hover:bg-eggshell-400 rounded-lg py-2 px-4 text-sm font-normal ${currentPath === navigation.link.slice(1) ? "bg-eggshell-400 text-black" : ""}`}
             >
               {navigation.name}
             </a>
@@ -45,7 +51,7 @@ const currentPath = pathname.slice(1);
           <span class="text-white text-2xl"> / ISES</span>
         </h1>
       </div>
-      <div class="w-24"><img src="/ises-logo.png" /></div>
+      <div class="w-24"><img src="/ises-logo.webp" /></div>
     </div>
   </div>
 </header>
