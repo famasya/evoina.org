@@ -35,7 +35,7 @@ const currentPath = Astro.url.pathname;
           navigations.map((navigation) => (
             <a
               href={navigation.link}
-              class={`hover:bg-eggshell-400 rounded-lg py-1 px-4 text-sm font-normal ${currentPath === navigation.link ? "bg-eggshell-400 text-black" : ""}`}
+              class={`hover:bg-eggshell-400 rounded-lg py-1 px-4 text-sm font-normal ${currentPath === navigation.link || currentPath === "${navigation.link}/" ? "bg-eggshell-400 text-black" : ""}`}
             >
               {navigation.name}
             </a>
