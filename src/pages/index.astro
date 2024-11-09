@@ -1,82 +1,120 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import underConstructionImg from "../assets/img/under-construction.svg";
 ---
 
 <Layout title="Welcome to Indonesian Society for Evolutionary Studies (ISES)">
-  <main>
-    <h1>
-      Welcome to <span class="text-gradient"> the Official ISES Website</span>
-    </h1>
-    <Image src={underConstructionImg} alt="Under Construction" width="160" />
-    <p>🚧 This site is under construction 🚧</p>
-    <p class="instructions">
-      This site will host all the information about the ISES organization and
-      its activities.
-    </p>
-  </main>
-</Layout>
+  <header class="bg-[url('/header.jpg')] bg-cover h-96 bg-center">
+    <div
+      class="h-full bg-gradient-to-r from-black/70 to-black/10 text-white flex flex-col p-4"
+    >
+      <div class="border-b border-eggshell/50 pb-2 text-lg px-8">
+        <span class="font-semibold">ISES</span>.org
+      </div>
+      <div
+        class="h-full flex sm:flex-row flex-col-reverse items-center px-8 justify-between py-8"
+      >
+        <div>
+          <h1
+            class="text-4xl text-center sm:text-left sm:text-5xl flex flex-col gap-1 font-light"
+          >
+            <span class="text-eggshell">Indonesian Society</span>
+            <span class="text-white">for Evolutionary Studies</span>
+            <span class="text-white text-2xl"> / ISES</span>
+          </h1>
+        </div>
+        <div class="w-24"><img src="/ises-logo.png" /></div>
+      </div>
+    </div>
+  </header>
 
-<style>
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-    text-align: center;
-  }
-  .astro-a {
-    position: absolute;
-    top: -32px;
-    left: 50%;
-    transform: translatex(-50%);
-    width: 220px;
-    height: auto;
-    z-index: -1;
-  }
-  h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    margin-bottom: 1em;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-  .instructions {
-    margin-bottom: 2rem;
-    border: 1px solid rgba(var(--accent-light), 25%);
-    background: linear-gradient(
-      rgba(var(--accent-dark), 66%),
-      rgba(var(--accent-dark), 33%)
-    );
-    padding: 1.5rem;
-    border-radius: 8px;
-  }
-  .instructions code {
-    font-size: 0.8em;
-    font-weight: bold;
-    background: rgba(var(--accent-light), 12%);
-    color: rgb(var(--accent-light));
-    border-radius: 4px;
-    padding: 0.3em 0.4em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent-light));
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 2rem;
-    padding: 0;
-  }
-</style>
+  <main class="py-4 px-10 flex flex-col gap-4 items-center w-full">
+    <div class="w-full mt-4 flex flex-col-reverse sm:flex-row gap-8">
+      <div class="w-full sm:w-3/4">
+        <h2 class="text-3xl font-light">
+          Tentang <span class="font-semibold">ISES</span>
+        </h2>
+        <p>
+          Indonesian Society for Evolutionary Studies (ISES) didedikasikan untuk
+          mempromosikan penelitian, pendidikan, dan keterlibatan masyarakat
+          dalam ilmu evolusi.
+        </p>
+        <p>
+          Misi kami adalah untuk memajukan pemahaman tentang evolusi dan
+          implikasinya terhadap konservasi keanekaragaman hayati dan pembangunan
+          berkelanjutan di Indonesia. Sejak didirikan, kami telah menjadi yang
+          terdepan dalam studi evolusi di Indonesia, mendorong kolaborasi antara
+          peneliti, pendidik, dan pembuat kebijakan untuk mengatasi tantangan
+          kritis dalam konservasi keanekaragaman hayati dan keberlanjutan
+          lingkungan.
+        </p>
+
+        <button
+          class="mt-4 text-eggshell bg-reseda_green px-4 py-2 rounded-md hover:shadow-md"
+          >Pelajari selengkapnya</button
+        >
+      </div>
+      <div
+        class="w-full sm:w-1/4 font-light text-xl border-l-4 flex items-center border-dim_gray/20 p-4 bg-white/50"
+      >
+        ISES dibentuk sebagai wadah diskusi dan kolaborasi antar pegiat lintas
+        bidang evolusi, serta wadah edukasi mengenai ilmu evolusi untuk publik
+        di Indonesia.
+      </div>
+    </div>
+
+    <section class="w-full py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-8">Program</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-4 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2">
+              Database Peneliti Biologi Evolusi asal Indonesia
+            </h3>
+            <p class="text-sm">
+              Penyimpanan data peneliti dan penulis di bidang biologi evolusi
+              asal Indonesia berikut dengan informasi bidang keahlian, fokus
+              penelitian, dan kontak yang bisa dihubungi.
+            </p>
+          </div>
+          <div class="p-4 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2">
+              Sharing Session Bertopik Biologi Evolusi
+            </h3>
+            <p class="text-sm">
+              Wadah diseminasi penelitian atau kajian bidang evolusi yang telah,
+              sedang, atau ingin dikerjakan oleh anggota maupun pengurus. Topik
+              mulai dari ilmiah hingga non-ilmiah dan sifatnya terbuka.
+            </p>
+          </div>
+          <div class="p-4 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2">
+              Edukasi dan keterlibatan publik
+            </h3>
+            <p class="text-sm">
+              Pembuatan konten media sosial yang mengedukasi masyarakat mengenai
+              teori evolusi, publisitas kegiatan komunitas, serta diseminasi
+              penelitian anggota komunitas. Sifatnya mendorong diskusi publik
+              mengenai evolusi.
+            </p>
+          </div>
+          <div class="p-4 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2">
+              Database KEHATI dan distribusinya di Indonesia
+            </h3>
+            <p class="text-sm">
+              Pengelolaan database keanekaragaman hayati dan informasi terkait,
+              mulai dari nomenklatur, nama lokal, status taksonomi, distribusi,
+              status konservasi, spesimen tipe, dan publikasi terkait.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    p {
+      @apply mt-4 text-lg font-light;
+    }
+  </style>
+</Layout>
