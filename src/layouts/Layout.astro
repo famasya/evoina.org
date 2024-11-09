@@ -31,13 +31,20 @@ const { title } = Astro.props;
   </body>
 </html>
 <style is:global>
+  h1 {
+    @apply text-xl md:text-3xl font-normal;
+  }
   p {
     @apply mt-4 font-light;
   }
   .auto-padding {
-    @apply px-8 md:px-16 lg:px-32 min-h-48;
+    @apply px-8 md:px-16 lg:px-32;
   }
   p a {
     @apply underline underline-offset-2;
+  }
+
+  main {
+    @apply min-h-48;
   }
 </style>
