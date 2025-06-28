@@ -34,79 +34,92 @@ const researchActivities = [
 
 // Add client-side JavaScript for carousel functionality
 const carouselScript = `
-  document.addEventListener('DOMContentLoaded', () => {
-    const carousel = document.querySelector('.carousel-container');
-    const prevBtn = document.querySelector('.carousel-prev');
-    const nextBtn = document.querySelector('.carousel-next');
-    const items = document.querySelectorAll('.carousel-item');
-    let itemWidth = 0;
-    let currentIndex = 0;
-    let isScrolling = false;
-    let visibleItems = window.innerWidth < 768 ? 1 : 3; // 1 item on mobile, 3 on desktop
+function setupCarousel() {
+  const carousel = document.querySelector('.carousel-container');
+  if (!carousel) return;
 
-    // Enable smooth scrolling
-    carousel.style.scrollBehavior = 'smooth';
-    carousel.style.overflowX = 'auto';
+  const prevBtn = document.querySelector('.carousel-prev');
+  const nextBtn = document.querySelector('.carousel-next');
+  const items = document.querySelectorAll('.carousel-item');
+  
+  if (items.length === 0) {
+    if(prevBtn) prevBtn.style.display = 'none';
+    if(nextBtn) nextBtn.style.display = 'none';
+    return;
+  }
 
-    function updateButtons() {
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex >= items.length - visibleItems;
+  let itemWidth = 0;
+  let currentIndex = 0;
+  let visibleItems = window.innerWidth < 768 ? 1 : 3;
+
+  carousel.style.scrollBehavior = 'smooth';
+
+  function updateButtons() {
+    if (!prevBtn || !nextBtn) return;
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= items.length - visibleItems;
+  }
+
+  function scrollToItem(index) {
+    const isMobile = window.innerWidth < 768;
+    const gap = isMobile ? 16 : 32; // Corresponds to gap-4 and md:gap-8
+    if (items.length > 0 && items[0]) {
+      itemWidth = items[0].offsetWidth + gap;
     }
+    const targetScroll = index * itemWidth;
+    carousel.scrollLeft = targetScroll;
+  }
 
-    function scrollToItem(index) {
-      isScrolling = true;
-      const targetScroll = index * itemWidth;
-      carousel.scrollLeft = targetScroll;
-      
-      // Reset the scrolling flag after the scroll completes
-      setTimeout(() => {
-        isScrolling = false;
-      }, 500); // Match this with your CSS transition time
-    }
-
-    prevBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        scrollToItem(currentIndex);
-        updateButtons();
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (currentIndex < items.length - visibleItems) {
-        currentIndex++;
-        scrollToItem(currentIndex);
-        updateButtons();
-      }
-    });
-
-    // Initialize carousel
-    updateCarousel();
-    
-    // Update on window resize
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        const newVisibleItems = window.innerWidth < 768 ? 1 : 3;
-        if (newVisibleItems !== visibleItems) {
-          visibleItems = newVisibleItems;
-          updateCarousel();
-        }
-      }, 250);
-    });
-    
-    function updateCarousel() {
-      // Update item width based on screen size
-      const isMobile = window.innerWidth < 768;
-      itemWidth = items[0].offsetWidth + (isMobile ? 16 : 32);
-      
-      // Reset to first item on breakpoint change
-      currentIndex = 0;
-      scrollToItem(0);
+  function handlePrevClick() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      scrollToItem(currentIndex);
       updateButtons();
     }
-  });
+  }
+
+  function handleNextClick() {
+    if (currentIndex < items.length - visibleItems) {
+      currentIndex++;
+      scrollToItem(currentIndex);
+      updateButtons();
+    }
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', handlePrevClick);
+  if (nextBtn) nextBtn.addEventListener('click', handleNextClick);
+
+  let resizeTimer;
+  const handleResize = () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const newVisibleItems = window.innerWidth < 768 ? 1 : 3;
+      if (newVisibleItems !== visibleItems) {
+        visibleItems = newVisibleItems;
+        currentIndex = 0; // Reset on breakpoint change
+      }
+      scrollToItem(currentIndex);
+      updateButtons();
+    }, 250);
+  };
+
+  window.addEventListener('resize', handleResize);
+  
+  // Initial setup
+  scrollToItem(currentIndex);
+  updateButtons();
+
+  function cleanup() {
+    if (prevBtn) prevBtn.removeEventListener('click', handlePrevClick);
+    if (nextBtn) nextBtn.removeEventListener('click', handleNextClick);
+    window.removeEventListener('resize', handleResize);
+    document.removeEventListener('astro:before-swap', cleanup);
+  }
+
+  document.addEventListener('astro:before-swap', cleanup);
+}
+
+document.addEventListener('astro:page-load', setupCarousel);
 `;
 ---
 

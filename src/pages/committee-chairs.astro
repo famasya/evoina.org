@@ -1,4 +1,5 @@
 ---
+import { Mail, University } from "@lucide/astro";
 import PageTitle from "../components/page-title.astro";
 import Layout from "../layouts/Layout.astro";
 const committeeChairs = [
@@ -57,29 +58,52 @@ const committeeChairs = [
   />
 
   <main class="auto-padding my-8 font-light">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto py-12">
       {
         committeeChairs.map((chair) => (
-          <div class="border border-eggshell-400 p-4 rounded-xl flex flex-row items-center gap-4 hover:border-eggshell-300 transition-colors hover:bg-eggshell-50">
-            <div class="w-36 h-36">
+          <div class="flex flex-col items-center text-center p-6 border border-eggshell-500 rounded-xl">
+            <div class="w-48 h-48 rounded-full overflow-hidden mb-4 border-8 shadow-sm border-eggshell-500">
               <img
                 src={chair.image}
-                alt="Arif Maulana"
-                class="w-full h-full object-cover rounded-full"
+                alt={chair.name}
+                class="w-full h-full object-cover"
               />
             </div>
-            <div class="flex flex-col gap-2 flex-1">
-              <h2 class="font-semibold text-lg">{chair.title}</h2>
-              <h2 class="text-xl font-serif">{chair.name}</h2>
-              <p>{chair.description}</p>
-              <div class="flex flex-col gap-1 border-t pt-2">
-                <div class="text-sm">{chair.university}</div>
-                <div class="text-sm">Contact: {chair.contact}</div>
-              </div>
+            <h2 class="text-xl font-medium text-brunswick_green">
+              {chair.name}
+            </h2>
+            <div class="text-gray-600">{chair.title}</div>
+            <div class="text-gray-600 my-4 text-sm bg-eggshell-500 p-2 rounded-md">
+              {chair.description}
+            </div>
+            <div class="flex flex-row items-center gap-2 text-gray-600">
+              <University class="w-4 h-4" />
+              {chair.university}
+            </div>
+            <div class="flex flex-row items-center gap-2 text-gray-600">
+              <Mail class="w-4 h-4" />
+              {chair.contact}
             </div>
           </div>
         ))
       }
+    </div>
+    <div class="text-center mt-8 bg-eggshell-500 p-8 rounded-xl">
+      <h1 class="font-serif text-3xl">
+        Interested in being part of the effort?
+      </h1>
+      <p class="text-lg">
+        Please take a look at how you can contribute and consider joining us
+        here:
+      </p>
+      <div class="mt-4">
+        <a
+          href="#"
+          class="bg-brunswick_green text-white hover:bg-brunswick_green/90 transition-colors rounded-md px-6 py-3 font-semibold"
+        >
+          JOIN US
+        </a>
+      </div>
     </div>
   </main>
 </Layout>

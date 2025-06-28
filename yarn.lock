@@ -748,6 +748,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lucide/astro@npm:^0.525.0":
+  version: 0.525.0
+  resolution: "@lucide/astro@npm:0.525.0"
+  peerDependencies:
+    astro: ^4 || ^5
+  checksum: 10c0/68d39a98bf60589e860071914993ae018856b9a45b4d5a6b3a20254e3ad8c69aee274ffd609d8bec001aa324a652e57cd14d235014ce2a091c75bb42c617f54d
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -4983,6 +4992,7 @@ __metadata:
     "@astrojs/check": "npm:^0.9.4"
     "@astrojs/tailwind": "npm:6.0.2"
     "@fontsource-variable/inter": "npm:^5.1.0"
+    "@lucide/astro": "npm:^0.525.0"
     astro: "npm:5.10.1"
     astro-icon: "npm:^1.1.2"
     tailwindcss: "npm:^3.4.14"
