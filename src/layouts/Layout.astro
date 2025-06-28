@@ -1,5 +1,6 @@
 ---
 import "@fontsource-variable/inter";
+import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 interface Props {
@@ -12,6 +13,7 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <ViewTransitions />
     <meta charset="UTF-8" />
     <meta
       name="description"
@@ -22,9 +24,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title} - evoina.org</title>
   </head>
-  <body
-    class="font-inter h-full min-h-screen bg-gradient-to-t from-eggshell to-eggshell/20"
-  >
+  <body class="font-inter h-full min-h-screen">
     <Header />
     <slot />
     <Footer />

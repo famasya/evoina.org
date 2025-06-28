@@ -1,61 +1,183 @@
 ---
-const navigations = [
-  { link: "/", name: "Beranda" },
-  { link: "/about", name: "Latar Belakang" },
-  { link: "/resources", name: "Resources" },
+const mainNavigations = [
+  { name: "About", href: "/about" },
+  { name: "Programs", href: "#" },
+  { name: "Resources", href: "/resources" },
 ];
-
-const currentPath = Astro.url.pathname;
 ---
 
-<header
-  class="bg-dim_gray bg-[url('/header.webp')] bg-cover bg-center relative"
->
-  <div class="text-white/40 text-xs absolute bottom-1 right-1 font-light">
-    Ilustrasi oleh <a
-      href="https://unsplash.com/photos/a-forest-filled-with-lots-of-tall-trees-BM51hWoI3PI"
-      target="_blank">Roberto Lendon</a
-    >
-  </div>
+<header class="absolute top-0 left-0 right-0 z-50 text-white">
   <div
-    class="bg-gradient-to-r from-black/70 to-black/10 text-white flex flex-col py-2"
+    class="bg-gradient-to-b from-black/80 to-transparent px-4 md:px-8 lg:px-16"
   >
+    <!-- Top Bar -->
     <div
-      class="border-b border-eggshell/50 pb-2 text-lg auto-padding flex flex-col gap-2 sm:flex-row justify-between items-center"
+      class="flex justify-between items-center py-2 border-b border-white/20"
     >
-      <>
-        <a href="/">
-          <span class="font-semibold">evoina</span>.org
+      <div class="flex items-center text-base">
+        <strong>evoina</strong>.org
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="hidden md:flex items-center gap-2 text-sm">
+          <a href="#" class="hover:text-gray-300 transition-colors">EN</a>
+          <a href="#" class="hover:text-gray-300 transition-colors">ID</a>
+        </div>
+        <!-- Mobile menu button -->
+        <button
+          id="menu-toggle-btn"
+          class="md:hidden p-2 text-white focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <div class="w-6 flex flex-col gap-1.5">
+            <span class="block h-0.5 bg-white transition-all duration-300"
+            ></span>
+            <span
+              class="block h-0.5 bg-white transition-all duration-300 opacity-100"
+            ></span>
+            <span class="block h-0.5 bg-white transition-all duration-300"
+            ></span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex justify-between items-center py-4">
+      <div class="flex flex-row gap-6 items-center">
+        <img src="/ises1.png" alt="ISES" class="h-12 lg:h-16" />
+        <nav class="hidden md:flex items-center gap-6">
+          {
+            mainNavigations.map((nav) => (
+              <a
+                href={nav.href}
+                class="hover:text-gray-300 font-semibold transition-colors"
+              >
+                {nav.name}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+      <div class="hidden md:flex items-center">
+        <a
+          href="#"
+          class="bg-white hover:bg-gray-100 text-black rounded-md px-4 py-2 text-sm font-semibold flex items-center gap-2 transition-colors"
+        >
+          JOIN US <span>&rarr;</span>
         </a>
-      </>
-      <div
-        class="flex flex-col w-full sm:w-auto sm:flex-row gap-2 bg-white rounded-lg text-black text-center px-2 py-1"
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-black/90 z-40 transform transition-all duration-300 ease-in-out translate-x-full"
+  >
+    <div class="container mx-auto px-4 py-8 h-full flex flex-col">
+      <div class="flex justify-end py-4">
+        <button
+          id="menu-close-btn"
+          class="text-white p-2"
+          aria-label="Close menu"
+        >
+          ✕
+        </button>
+      </div>
+      <nav
+        class="flex-1 flex flex-col items-center justify-center gap-8 text-xl"
       >
         {
-          navigations.map((navigation) => (
+          mainNavigations.map((nav) => (
             <a
-              href={navigation.link}
-              class={`hover:bg-eggshell-400 rounded-lg py-1 px-4 text-sm font-normal ${currentPath === navigation.link || currentPath === `${navigation.link}/` ? "bg-eggshell-400 text-black" : ""}`}
+              href={nav.href}
+              class="mobile-nav-link hover:text-gray-300 font-semibold transition-colors"
             >
-              {navigation.name}
+              {nav.name}
             </a>
           ))
         }
-      </div>
-    </div>
-    <div
-      class="h-full flex flex-row items-center auto-padding justify-between py-8 gap-2"
-    >
-      <div>
-        <h1
-          class="text-xl md:text-4xl text-left sm:text-left flex flex-col gap-1 font-light"
+        <div class="flex items-center gap-4 mt-8">
+          <a href="#" class="hover:text-gray-300 transition-colors">EN</a>
+          <a href="#" class="hover:text-gray-300 transition-colors">ID</a>
+        </div>
+        <a
+          href="#"
+          class="bg-white hover:bg-gray-100 text-black rounded-md px-6 py-3 font-semibold flex items-center gap-2 transition-colors mt-4"
         >
-          <span class="text-eggshell">Indonesian Society</span>
-          <span class="text-white">for Evolutionary Studies</span>
-          <span class="text-white"> (ISES)</span>
-        </h1>
-      </div>
-      <div class="w-16 sm:w-24"><img src="/ises-logo.webp" /></div>
+          JOIN US <span>&rarr;</span>
+        </a>
+      </nav>
     </div>
   </div>
 </header>
+<script is:inline>
+  // This script is designed to be idempotent and work with Astro View Transitions.
+  // It adds a single delegated event listener to the document and runs only once.
+  if (!document.body.hasAttribute("data-header-listeners-attached")) {
+    document.body.setAttribute("data-header-listeners-attached", "true");
+
+    const setMenuState = (isOpen) => {
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuToggleBtn = document.getElementById("menu-toggle-btn");
+      if (!mobileMenu || !menuToggleBtn) return;
+
+      mobileMenu.classList.toggle("translate-x-full", !isOpen);
+      mobileMenu.classList.toggle("translate-x-0", isOpen);
+      document.body.style.overflow = isOpen ? "hidden" : "";
+
+      const iconSpans = menuToggleBtn.querySelectorAll("span");
+      if (iconSpans.length === 3) {
+        iconSpans[0].classList.toggle("rotate-45", isOpen);
+        iconSpans[0].classList.toggle("translate-y-2", isOpen);
+        iconSpans[1].classList.toggle("opacity-0", isOpen);
+        iconSpans[1].classList.toggle("opacity-100", !isOpen);
+        iconSpans[2].classList.toggle("-rotate-45", isOpen);
+        iconSpans[2].classList.toggle("-translate-y-2", isOpen);
+      }
+    };
+
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      if (!mobileMenu) return;
+
+      const isMenuOpen = mobileMenu.classList.contains("translate-x-0");
+
+      // Case 1: Click on the menu toggle button
+      if (target.closest("#menu-toggle-btn")) {
+        setMenuState(!isMenuOpen);
+        return;
+      }
+
+      // Case 2: Click on the close button
+      if (target.closest("#menu-close-btn")) {
+        setMenuState(false);
+        return;
+      }
+
+      // Case 3: Click on a mobile navigation link
+      const navLink = target.closest(".mobile-nav-link");
+      if (navLink && mobileMenu.contains(navLink)) {
+        e.preventDefault();
+        setMenuState(false);
+        // Navigate after the closing animation
+        setTimeout(() => {
+          const href = navLink.getAttribute("href");
+          if (href) {
+            window.location.href = href;
+          }
+        }, 300);
+      }
+    });
+  }
+</script>
+<style>
+  /* Smooth transitions for the mobile menu */
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+</style>

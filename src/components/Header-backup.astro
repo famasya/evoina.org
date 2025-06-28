@@ -1,0 +1,51 @@
+---
+const navigations = [
+  { link: "/", name: "Beranda" },
+  { link: "/about", name: "Latar Belakang" },
+  { link: "/resources", name: "Resources" },
+  { link: "https://www.youtube.com/@ISEStalk", name: "ISES Talk" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  class="bg-black text-white auto-padding border-t-2 border-hunyadi_yellow"
+>
+  <div class="flex justify-between items-center py-4">
+    <div class="flex items-center gap-4">
+      <div class="relative">
+        <input
+          type="text"
+          placeholder="Search"
+          class="bg-dim_gray-200 border border-silver/20 rounded-md py-1 px-2 focus:outline-none focus:border-hunyadi_yellow"
+        />
+      </div>
+    </div>
+    <div class="absolute left-1/2 -translate-x-1/2">
+      <a href="/" class="text-2xl font-semibold">
+        evoina<span class="text-hunyadi_yellow">.</span>org
+      </a>
+    </div>
+    <div class="flex items-center gap-4">
+      {
+        navigations.map((navigation) => (
+          <a
+            href={navigation.link}
+            class={`hover:text-hunyadi_yellow text-sm font-normal ${currentPath === navigation.link || currentPath === `${navigation.link}/` ? "text-hunyadi_yellow" : ""}`}
+            target={navigation.link.startsWith("http") ? "_blank" : "_self"}
+          >
+            {navigation.name}
+          </a>
+        ))
+      }
+      <a
+        href="#"
+        class="flex items-center gap-2 hover:text-hunyadi_yellow text-sm"
+      >
+        <span>LIVE</span>
+        <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+      </a>
+    </div>
+  </div>
+</header>

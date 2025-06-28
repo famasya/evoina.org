@@ -3,6 +3,14 @@ import { Icon } from "astro-icon/components";
 const year = new Date().getFullYear();
 ---
 
+<script>
+  const placeholder = document.getElementById("current-year");
+  if (placeholder) {
+    const year = new Date().getFullYear();
+    placeholder.textContent = year.toString();
+  }
+</script>
+
 <div class="w-full flex flex-col items-center">
   <div class="border-t-4 my-8 border-black/30 border-dotted w-[20px]"></div>
   <section>
@@ -28,7 +36,7 @@ const year = new Date().getFullYear();
   <section class="border-t-[1px] my-8 border-black/10 w-[80%]">
     <div class="flex justify-center gap-4">
       <p class="text-sm">
-        Copyright &copy; {year}
+        Copyright &copy; <span id="current-year">{year}</span>
         <a href="/" class="font-semibold">evoina.org</a>
       </p>
     </div>
