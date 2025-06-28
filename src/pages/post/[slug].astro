@@ -1,0 +1,50 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import PostHeader from "../../components/post-header.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const archiveEntries = await getCollection("archives");
+  return archiveEntries.map((entry: CollectionEntry<"archives">) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+type Props = {
+  entry: CollectionEntry<"archives">;
+};
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <PostHeader
+    title={entry.data.title}
+    category={entry.data.category}
+    pubDate={entry.data.pubDate}
+    background={entry.data.image}
+  />
+  <article class="auto-padding">
+    <div class="prose lg:prose-xl text-lg max-w-none text-wrap mt-8">
+      {
+        entry.data.image && (
+          <div class="w-64 float-right bg-eggshell-500 p-2">
+            <a href={entry.data.image} target="_blank">
+              <img
+                src={entry.data.image}
+                alt={entry.data.title}
+                class="w-full h-auto object-cover rounded-lg mb-1"
+              />
+              <div class="text-xs text-center hover:text-brunswick_green transition-colors">
+                Click to enlarge
+              </div>
+            </a>
+          </div>
+        )
+      }
+      <Content />
+    </div>
+  </article>
+</Layout>

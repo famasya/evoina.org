@@ -1,0 +1,42 @@
+---
+import { ChevronLeft } from "@lucide/astro";
+
+interface Props {
+  title: string;
+  background?: string;
+  category: string;
+  pubDate: Date;
+}
+
+const { title, background, category, pubDate } = Astro.props;
+---
+
+<div
+  class={`w-full pt-64 bg-black text-white ${!background ? "bg-black" : "bg-cover bg-center bg-no-repeat"}`}
+  style={background
+    ? `background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('${background}')`
+    : ""}
+>
+  <div class="auto-padding bg-gradient-to-t from-black/70 to-transparent py-6">
+    <div class="flex">
+      <a
+        href="/archives"
+        class="bg-white/10 px-2 py-1 rounded-md border border-white hover:bg-white/30 transition-colors flex items-center gap-2 mb-4"
+        ><ChevronLeft class="w-4 h-4" />Back to Archives</a
+      >
+    </div>
+    <div class="flex flex-row items-center gap-2">
+      <h2 class="font-serif text-4xl">
+        {title}
+      </h2>
+    </div>
+    <p class="text-gray-600">
+      <span class="text-white bg-brunswick_green px-2 py-1 rounded-full"
+        >{category}</span
+      >
+      <span class="ml-2 text-white"
+        >Published on: {pubDate.toLocaleDateString()}</span
+      >
+    </p>
+  </div>
+</div>
