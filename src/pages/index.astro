@@ -3,6 +3,7 @@ import Button from "../components/Button.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
+import ResearchActivities from "./index/research-activities.astro";
 ---
 
 <Layout title="The Nature Place Day Camp">
@@ -36,61 +37,5 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </div>
 
-  <div class="m-16">
-    <div class="flex flex-row items-center justify-center gap-8">
-      <h2 class="font-serif text-3xl mb-4 bg-eggshell-500 px-4 py-1">
-        Research Activities
-      </h2>
-    </div>
-    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-      <div class="relative w-full md:w-1/4 group min-h-[300px]">
-        <img
-          src="/carousels/Cuora_amboinensis_NurHerjayanti.JPG"
-          class="h-full min-h-[300px] w-full object-cover rounded-xl"
-          alt="Turtle Species 1"
-        />
-        <div
-          class="absolute inset-0 bg-gradient-to-b rounded-xl from-black/0 via-black/0 to-black/70 flex items-end p-4 transition-all duration-300 group-hover:opacity-100"
-        >
-          <h3 class="text-white text-lg">Turtle Species 1</h3>
-        </div>
-      </div>
-      <div class="relative w-full md:w-1/4 group min-h-[300px]">
-        <img
-          src="/carousels/Cuora_amboinensis_NurHerjayanti.JPG"
-          class="h-full min-h-[300px] w-full object-cover rounded-xl"
-          alt="Turtle Species 2"
-        />
-        <div
-          class="absolute inset-0 bg-gradient-to-b rounded-xl from-black/0 via-black/0 to-black/70 flex items-end p-4 transition-all duration-300 group-hover:opacity-100"
-        >
-          <h3 class="text-white text-lg">Turtle Species 2</h3>
-        </div>
-      </div>
-      <div class="relative w-full md:w-1/4 group min-h-[300px]">
-        <img
-          src="/carousels/Cuora_amboinensis_NurHerjayanti.JPG"
-          class="h-full min-h-[300px] w-full object-cover rounded-xl"
-          alt="Turtle Species 3"
-        />
-        <div
-          class="absolute inset-0 bg-gradient-to-b rounded-xl from-black/0 via-black/0 to-black/70 flex items-end p-4 transition-all duration-300 group-hover:opacity-100"
-        >
-          <h3 class="text-white text-lg">Turtle Species 3</h3>
-        </div>
-      </div>
-      <div class="relative w-full md:w-1/4 group min-h-[300px]">
-        <img
-          src="/carousels/Cuora_amboinensis_NurHerjayanti.JPG"
-          class="h-full min-h-[300px] w-full object-cover rounded-xl"
-          alt="Turtle Species 4"
-        />
-        <div
-          class="absolute inset-0 bg-gradient-to-b rounded-xl from-black/0 via-black/0 to-black/70 flex items-end p-4 transition-all duration-300 group-hover:opacity-100"
-        >
-          <h3 class="text-white text-lg">Turtle Species 4</h3>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ResearchActivities />
 </Layout>
