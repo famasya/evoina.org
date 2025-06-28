@@ -2,6 +2,7 @@
 const mainNavigations = [
   { name: "About", href: "/about" },
   { name: "Programs", href: "#" },
+  { name: "Committee Chairs", href: "/committee-chairs" },
   { name: "Resources", href: "/resources" },
 ];
 ---
@@ -15,7 +16,9 @@ const mainNavigations = [
       class="flex justify-between items-center py-2 border-b border-white/20"
     >
       <div class="flex items-center text-base">
-        <strong>evoina</strong>.org
+        <a href="/" class="hover:text-gray-300 transition-colors">
+          <strong>evoina</strong>.org
+        </a>
       </div>
       <div class="flex items-center gap-4">
         <div class="hidden md:flex items-center gap-2 text-sm">
@@ -44,7 +47,12 @@ const mainNavigations = [
     <!-- Desktop Navigation -->
     <div class="hidden md:flex justify-between items-center py-4">
       <div class="flex flex-row gap-6 items-center">
-        <img src="/ises1.png" alt="ISES" class="h-12 lg:h-16" />
+        <a
+          href="/"
+          class="hover:text-gray-300 transition-colors bg-white rounded-md px-4 py-2"
+        >
+          <img src="/ises1.png" alt="ISES" class="h-12 lg:h-16" />
+        </a>
         <nav class="hidden md:flex items-center gap-6">
           {
             mainNavigations.map((nav) => (

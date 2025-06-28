@@ -1,0 +1,85 @@
+---
+import PageTitle from "../components/page-title.astro";
+import Layout from "../layouts/Layout.astro";
+const committeeChairs = [
+  {
+    name: "Arif Maulana",
+    title: "Chair",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    image: "/carousels/Arachnida_ArifMaulana.JPG",
+    university: "University of Indonesia",
+    contact: "arifmaulana@ises.org",
+  },
+  {
+    name: "Arif Maulana",
+    title: "Chair",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    image: "/carousels/Arachnida_ArifMaulana.JPG",
+    university: "University of Indonesia",
+    contact: "arifmaulana@ises.org",
+  },
+  {
+    name: "Arif Maulana",
+    title: "Chair",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    image: "/carousels/Arachnida_ArifMaulana.JPG",
+    university: "University of Indonesia",
+    contact: "arifmaulana@ises.org",
+  },
+  {
+    name: "Arif Maulana",
+    title: "Chair",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    image: "/carousels/Arachnida_ArifMaulana.JPG",
+    university: "University of Indonesia",
+    contact: "arifmaulana@ises.org",
+  },
+  {
+    name: "Arif Maulana",
+    title: "Chair",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    image: "/carousels/Arachnida_ArifMaulana.JPG",
+    university: "University of Indonesia",
+    contact: "arifmaulana@ises.org",
+  },
+];
+---
+
+<Layout title="Committee Chairs">
+  <PageTitle
+    title="Committee Chairs"
+    background="/carousels/Haeromys_minahasae_HeruHandika.jpg"
+  />
+
+  <main class="auto-padding my-8 font-light">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {
+        committeeChairs.map((chair) => (
+          <div class="border border-eggshell-400 p-4 rounded-xl flex flex-row items-center gap-4 hover:border-eggshell-300 transition-colors hover:bg-eggshell-50">
+            <div class="w-36 h-36">
+              <img
+                src={chair.image}
+                alt="Arif Maulana"
+                class="w-full h-full object-cover rounded-full"
+              />
+            </div>
+            <div class="flex flex-col gap-2 flex-1">
+              <h2 class="font-semibold text-lg">{chair.title}</h2>
+              <h2 class="text-xl font-serif">{chair.name}</h2>
+              <p>{chair.description}</p>
+              <div class="flex flex-col gap-1 border-t pt-2">
+                <div class="text-sm">{chair.university}</div>
+                <div class="text-sm">Contact: {chair.contact}</div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </main>
+</Layout>

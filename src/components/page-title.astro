@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  background?: string;
+}
+
+const { title, background } = Astro.props;
+---
+
+<div
+  class={`w-full pt-64 text-white ${!background ? "bg-black" : "bg-cover bg-center bg-no-repeat"}`}
+  style={background ? `background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('${background}')` : ""}
+>
+  <div class="px-16 bg-gradient-to-t from-black/70 to-transparent py-6">
+    <h2 class="font-serif text-4xl">
+      {title}
+    </h2>
+  </div>
+</div>

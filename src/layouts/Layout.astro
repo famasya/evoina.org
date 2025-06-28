@@ -1,6 +1,6 @@
 ---
 import "@fontsource-variable/inter";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 interface Props {
@@ -13,7 +13,7 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
-    <ViewTransitions />
+    <ClientRouter />
     <meta charset="UTF-8" />
     <meta
       name="description"
@@ -38,7 +38,7 @@ const { title } = Astro.props;
     @apply mt-4 font-light;
   }
   .auto-padding {
-    @apply px-8 md:px-16 lg:px-32;
+    @apply px-8 md:px-16 lg:px-16;
   }
   p a {
     @apply underline underline-offset-2;
