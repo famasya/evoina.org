@@ -1,11 +1,123 @@
 ---
+import {
+  getAlternateLocale,
+  getLocalizedUrl,
+  removeLocaleFromPath,
+  type SupportedLocale,
+  type Translations,
+} from "../i18n";
+
+interface Props {
+  currentLocale: SupportedLocale;
+  translations: Translations;
+}
+
+const { currentLocale, translations } = Astro.props;
+
+// Create localized navigation items with proper route mapping
+const getLocalizedRoute = (route: string, locale: SupportedLocale): string => {
+  const routeMap: Record<SupportedLocale, Record<string, string>> = {
+    en: {
+      about: "about",
+      programs: "programs",
+      "committee-chairs": "committee-chairs",
+      resources: "resources",
+      archives: "archives",
+    },
+    id: {
+      about: "tentang",
+      programs: "program",
+      "committee-chairs": "komite",
+      resources: "sumber-daya",
+      archives: "arsip",
+    },
+  };
+
+  return routeMap[locale]?.[route] || route;
+};
+
+// Function to get the base route from a localized route
+const getBaseRoute = (
+  localizedRoute: string,
+  locale: SupportedLocale,
+): string => {
+  const reverseRouteMap: Record<SupportedLocale, Record<string, string>> = {
+    en: {
+      about: "about",
+      programs: "programs",
+      "committee-chairs": "committee-chairs",
+      resources: "resources",
+      archives: "archives",
+    },
+    id: {
+      tentang: "about",
+      program: "programs",
+      komite: "committee-chairs",
+      "sumber-daya": "resources",
+      arsip: "archives",
+    },
+  };
+
+  return reverseRouteMap[locale]?.[localizedRoute] || localizedRoute;
+};
+
 const mainNavigations = [
-  { name: "About", href: "/about" },
-  { name: "Programs", href: "/programs" },
-  { name: "Committee Chairs", href: "/committee-chairs" },
-  { name: "Resources", href: "/resources" },
-  { name: "Archives", href: "/archives" },
+  {
+    name: translations.navigation.about,
+    href: getLocalizedUrl(
+      getLocalizedRoute("about", currentLocale),
+      currentLocale,
+    ),
+  },
+  {
+    name: translations.navigation.programs,
+    href: getLocalizedUrl(
+      getLocalizedRoute("programs", currentLocale),
+      currentLocale,
+    ),
+  },
+  {
+    name: translations.navigation.committee_chairs,
+    href: getLocalizedUrl(
+      getLocalizedRoute("committee-chairs", currentLocale),
+      currentLocale,
+    ),
+  },
+  {
+    name: translations.navigation.resources,
+    href: getLocalizedUrl(
+      getLocalizedRoute("resources", currentLocale),
+      currentLocale,
+    ),
+  },
+  {
+    name: translations.navigation.archives,
+    href: getLocalizedUrl(
+      getLocalizedRoute("archives", currentLocale),
+      currentLocale,
+    ),
+  },
 ];
+
+// Get current path without locale for language switching
+const currentPath = removeLocaleFromPath(Astro.url.pathname);
+const alternateLocale = getAlternateLocale(currentLocale);
+
+// Get the base route from the current localized path
+const currentRoute = currentPath.startsWith("/")
+  ? currentPath.slice(1)
+  : currentPath;
+const baseRoute = getBaseRoute(currentRoute, currentLocale);
+
+// Generate URLs for language switching
+const alternateUrl = getLocalizedUrl(
+  getLocalizedRoute(baseRoute, alternateLocale),
+  alternateLocale,
+);
+const currentUrl = getLocalizedUrl(
+  getLocalizedRoute(baseRoute, currentLocale),
+  currentLocale,
+);
 ---
 
 <header class="absolute top-0 left-0 right-0 z-50 text-white">
@@ -17,14 +129,27 @@ const mainNavigations = [
       class="flex justify-between items-center py-2 border-b border-white/20"
     >
       <div class="flex items-center text-base">
-        <a href="/" class="hover:text-gray-300 transition-colors">
+        <a
+          href={getLocalizedUrl("", currentLocale)}
+          class="hover:text-gray-300 transition-colors"
+        >
           <strong>evoina</strong>.org
         </a>
       </div>
       <div class="flex items-center gap-4">
         <div class="hidden md:flex items-center gap-2 text-sm">
-          <a href="#" class="hover:text-gray-300 transition-colors">EN</a>
-          <a href="#" class="hover:text-gray-300 transition-colors">ID</a>
+          <a
+            href={getLocalizedUrl(getLocalizedRoute(baseRoute, "en"), "en")}
+            class={`hover:text-gray-300 transition-colors ${currentLocale === "en" ? "font-bold text-white" : "text-gray-400"}`}
+          >
+            EN
+          </a>
+          <a
+            href={getLocalizedUrl(getLocalizedRoute(baseRoute, "id"), "id")}
+            class={`hover:text-gray-300 transition-colors ${currentLocale === "id" ? "font-bold text-white" : "text-gray-400"}`}
+          >
+            ID
+          </a>
         </div>
         <!-- Mobile menu button -->
         <button
@@ -49,7 +174,7 @@ const mainNavigations = [
     <div class="hidden md:flex justify-between items-center py-4">
       <div class="flex flex-row gap-6 items-center">
         <a
-          href="/"
+          href={getLocalizedUrl("", currentLocale)}
           class="hover:text-gray-300 transition-colors bg-white rounded-md px-4 py-2"
         >
           <img src="/ises1.png" alt="ISES" class="h-12 lg:h-16" />
@@ -72,7 +197,8 @@ const mainNavigations = [
           href="#"
           class="bg-white hover:bg-gray-100 text-black rounded-md px-4 py-2 text-sm font-semibold flex items-center gap-2 transition-colors"
         >
-          JOIN US <span>&rarr;</span>
+          {translations.buttons.join_us}
+          <span>&rarr;</span>
         </a>
       </div>
     </div>
@@ -107,14 +233,25 @@ const mainNavigations = [
           ))
         }
         <div class="flex items-center gap-4 mt-8">
-          <a href="#" class="hover:text-gray-300 transition-colors">EN</a>
-          <a href="#" class="hover:text-gray-300 transition-colors">ID</a>
+          <a
+            href={getLocalizedUrl(getLocalizedRoute(baseRoute, "en"), "en")}
+            class={`hover:text-gray-300 transition-colors ${currentLocale === "en" ? "font-bold text-white" : "text-gray-400"}`}
+          >
+            EN
+          </a>
+          <a
+            href={getLocalizedUrl(getLocalizedRoute(baseRoute, "id"), "id")}
+            class={`hover:text-gray-300 transition-colors ${currentLocale === "id" ? "font-bold text-white" : "text-gray-400"}`}
+          >
+            ID
+          </a>
         </div>
         <a
           href="#"
           class="bg-white hover:bg-gray-100 text-black rounded-md px-6 py-3 font-semibold flex items-center gap-2 transition-colors mt-4"
         >
-          JOIN US <span>&rarr;</span>
+          {translations.buttons.join_us}
+          <span>&rarr;</span>
         </a>
       </nav>
     </div>

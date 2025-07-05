@@ -2,9 +2,11 @@
 import { Archive } from "@lucide/astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import PageTitle from "../components/page-title.astro";
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/layout.astro";
 
-const posts = await getCollection("archives");
+const posts = await getCollection("archives", ({ data }) => {
+  return data.locale === "en";
+});
 const categories = [...new Set(posts.map((post) => post.data.category))];
 
 const sortedPosts = posts.sort(
@@ -43,7 +45,7 @@ const sortedPosts = posts.sort(
           sortedPosts.map((post) => (
             <li>
               <a
-                href={`/post/${post.slug}`}
+                href={`/post/${post.slug.split("/").pop() || post.slug}`}
                 class="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
                 {post.data.image && (

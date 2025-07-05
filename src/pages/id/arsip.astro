@@ -1,23 +1,13 @@
 ---
-import { ChevronLeftCircle } from "@lucide/astro";
+import { Archive } from "@lucide/astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import PageTitle from "../../components/page-title.astro";
 import Layout from "../../layouts/layout.astro";
 
-export async function getStaticPaths() {
-  const posts = await getCollection("archives", ({ data }) => {
-    return data.locale === "en";
-  });
-  const categories = [...new Set(posts.map((post) => post.data.category))];
-  return categories.map((category) => ({
-    params: { category },
-  }));
-}
-
-const { category } = Astro.params;
 const posts = await getCollection("archives", ({ data }) => {
-  return data.category === category && data.locale === "en";
+  return data.locale === "id";
 });
+const categories = [...new Set(posts.map((post) => post.data.category))];
 
 const sortedPosts = posts.sort(
   (a: CollectionEntry<"archives">, b: CollectionEntry<"archives">) =>
@@ -25,17 +15,29 @@ const sortedPosts = posts.sort(
 );
 ---
 
-<Layout title={`Archives: ${category}`}>
-  <PageTitle title={`Category: ${category}`} />
+<Layout title="Arsip">
+  <PageTitle title="Arsip" />
 
   <section class="py-12">
     <div class="container mx-auto px-4">
-      <div class="mb-8 text-center">
+      <div class="flex flex-wrap gap-2 mb-8 justify-center">
         <a
-          href="/archives"
-          class="text-white bg-black hover:bg-black/80 transition-colors px-4 py-2 rounded-full flex items-center gap-2 w-fit"
-          ><ChevronLeftCircle /> Back to all archives</a
+          href="/id/arsip"
+          class="px-4 py-2 rounded-full border transition-colors bg-gray-800 text-white border-gray-800"
         >
+          Semua
+        </a>
+        {
+          categories.map((category) => (
+            <a
+              href={`/id/arsip/${category}`}
+              class="px-4 py-2 rounded-full border transition-colors bg-white text-gray-800 border-gray-200 hover:bg-gray-50 flex items-center gap-2"
+            >
+              <Archive size={16} />
+              {category}
+            </a>
+          ))
+        }
       </div>
 
       <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -43,7 +45,7 @@ const sortedPosts = posts.sort(
           sortedPosts.map((post) => (
             <li>
               <a
-                href={`/post/${post.slug.split("/").pop() || post.slug}`}
+                href={`/id/post/${post.slug.split("/").pop() || post.slug}`}
                 class="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
                 {post.data.image && (
@@ -57,7 +59,8 @@ const sortedPosts = posts.sort(
                   <p class="text-sm text-gray-500 mb-2">{post.data.category}</p>
                   <h2 class="text-2xl font-serif mb-2">{post.data.title}</h2>
                   <p class="text-gray-600 mb-2">
-                    Published on: {post.data.pubDate.toLocaleDateString()}
+                    Dipublikasikan pada:{" "}
+                    {post.data.pubDate.toLocaleDateString("id-ID")}
                   </p>
                   <p class="text-lg">{post.data.description}</p>
                 </div>

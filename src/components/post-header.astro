@@ -1,5 +1,11 @@
 ---
 import { ChevronLeft } from "@lucide/astro";
+import {
+  getLocaleFromUrl,
+  getLocalizedUrl,
+  loadTranslations,
+  type SupportedLocale,
+} from "../i18n/translate";
 
 interface Props {
   title: string;
@@ -9,6 +15,14 @@ interface Props {
 }
 
 const { title, background, category, pubDate } = Astro.props;
+
+// Get current locale and translations
+const currentLocale: SupportedLocale = getLocaleFromUrl(Astro.url);
+const translations = await loadTranslations(currentLocale);
+
+// Generate localized archives URL
+const archivesRoute = currentLocale === "id" ? "arsip" : "archives";
+const archivesUrl = getLocalizedUrl(archivesRoute, currentLocale);
 ---
 
 <div
@@ -20,9 +34,11 @@ const { title, background, category, pubDate } = Astro.props;
   <div class="auto-padding bg-gradient-to-t from-black/70 to-transparent py-6">
     <div class="flex">
       <a
-        href="/archives"
+        href={archivesUrl}
         class="bg-white/10 px-2 py-1 rounded-md border border-white hover:bg-white/30 transition-colors flex items-center gap-2 mb-4"
-        ><ChevronLeft class="w-4 h-4" />Back to Archives</a
+        ><ChevronLeft class="w-4 h-4" />{
+          translations.buttons.back_to_archives
+        }</a
       >
     </div>
     <div class="flex flex-row items-center gap-2">

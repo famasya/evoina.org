@@ -1,0 +1,49 @@
+{
+  "navigation": {
+    "about": "Tentang",
+    "programs": "Program",
+    "committee_chairs": "Ketua Komite",
+    "resources": "Sumber Daya",
+    "archives": "Arsip"
+  },
+  "buttons": {
+    "join_us": "BERGABUNG",
+    "register_member": "Daftar sebagai Anggota",
+    "contribute_dbspesies": "Berkontribusi ke DBSpesies",
+    "read_more": "Baca selengkapnya",
+    "read_all_news": "Baca Semua Berita & Pembaruan",
+    "what_we_do": "Apa yang Kami Lakukan",
+    "back_to_archives": "Kembali ke semua arsip"
+  },
+  "labels": {
+    "latest_news": "Berita & Pembaruan Terbaru",
+    "research_activities": "Kegiatan Penelitian",
+    "follow_social": "Ikuti Kami di Media Sosial",
+    "member_benefits": "Manfaat Keanggotaan",
+    "dbspesies_project": "Proyek DBSpesies"
+  },
+  "common": {
+    "prev": "Sebelumnya",
+    "next": "Selanjutnya",
+    "or": "atau",
+    "copyright": "Hak Cipta"
+  },
+  "homepage": {
+    "welcome_title": "Selamat Datang di Indonesian Society for Evolutionary Studies (ISES)",
+    "welcome_description": "Kami menyediakan forum bagi peneliti dan mahasiswa yang tertarik untuk memajukan pemahaman kita tentang asal-usul, evolusi, dan pemeliharaan keanekaragaman hayati di Indonesia. Masyarakat kami berdedikasi untuk mendukung penelitian kolaboratif dan mempromosikan dialog lintas disiplin ilmu yang berkaitan dengan evolusi serta meningkatkan pemahaman publik tentang bidang kami.",
+    "join_community_title": "Bergabunglah dengan Komunitas Peneliti Evolusi Kami",
+    "join_community_description": "Jadilah bagian dari jaringan biologi evolusi terkemuka di Indonesia. Terhubung dengan peneliti, akses sumber daya eksklusif, dan berkontribusi pada penemuan terobosan."
+  },
+  "benefits": {
+    "exclusive_resources": "Akses ke sumber daya penelitian eksklusif",
+    "priority_registration": "Prioritas pendaftaran untuk konferensi",
+    "networking": "Peluang jaringan",
+    "contribute_biodiversity": "Berkontribusi pada basis data keanekaragaman hayati",
+    "share_research": "Bagikan data penelitian Anda",
+    "collaborate": "Berkolaborasi dengan peneliti"
+  },
+  "meta": {
+    "site_description": "Indonesian Society for Evolutionary Studies (ISES)",
+    "site_title": "evoina.org"
+  }
+}

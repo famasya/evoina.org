@@ -7,6 +7,7 @@ const archivesCollection = defineCollection({
     pubDate: z.date(),
     description: z.string(),
     category: z.string(),
+    locale: z.enum(['en', 'id']),
     image: z.string().optional(),
   }),
 });

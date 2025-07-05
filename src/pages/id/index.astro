@@ -1,10 +1,10 @@
 ---
-import Button from "../components/button.astro";
-import Hero from "../components/hero-simple.astro";
-import { getLocaleFromUrl, loadTranslations } from "../i18n";
-import Layout from "../layouts/layout.astro";
-import News from "./index/news.astro";
-import ResearchActivities from "./index/research-activities.astro";
+import Button from "../../components/button.astro";
+import Hero from "../../components/hero-simple.astro";
+import { getLocaleFromUrl, loadTranslations } from "../../i18n";
+import Layout from "../../layouts/layout.astro";
+import News from "../index/news-id.astro";
+import ResearchActivities from "../index/research-activities-id.astro";
 
 // Get current locale from URL
 const currentLocale = getLocaleFromUrl(Astro.url);

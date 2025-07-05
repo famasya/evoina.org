@@ -1,11 +1,11 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import PostHeader from "../../components/post-header.astro";
-import Layout from "../../layouts/layout.astro";
+import PostHeader from "../../../components/post-header.astro";
+import Layout from "../../../layouts/layout.astro";
 
 export async function getStaticPaths() {
   const archiveEntries = await getCollection("archives", ({ data }) => {
-    return data.locale === "en";
+    return data.locale === "id";
   });
   return archiveEntries.map((entry: CollectionEntry<"archives">) => ({
     params: { slug: entry.slug.split("/").pop() || entry.slug },
@@ -40,7 +40,7 @@ const { Content } = await entry.render();
                 class="w-full h-auto object-cover rounded-lg mb-1"
               />
               <div class="text-xs text-center hover:text-brunswick_green transition-colors">
-                Click to enlarge
+                Klik untuk memperbesar
               </div>
             </a>
           </div>

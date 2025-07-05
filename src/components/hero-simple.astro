@@ -1,0 +1,133 @@
+---
+import {
+  getLocaleFromUrl,
+  getLocalizedUrl,
+  loadTranslations,
+  type SupportedLocale,
+} from "../i18n/translate";
+
+const images = [
+  { credit: "Arif Maulana", src: "/carousels/Arachnida_ArifMaulana.JPG" },
+  {
+    credit: "Nur Herjayanti",
+    src: "/carousels/Cuora_amboinensis_NurHerjayanti.JPG",
+  },
+  { credit: "Nur Herjayanti", src: "/carousels/Graphium_NurHerjayanti.JPG" },
+  {
+    credit: "Heru Handika",
+    src: "/carousels/Haeromys_minahasae_HeruHandika.jpg",
+  },
+  {
+    credit: "Arif Maulana",
+    src: "/carousels/Henosepilachna_diekei_ArifMaulana.JPG",
+  },
+  {
+    credit: "Nur Herjayanti",
+    src: "/carousels/Hydrosaurus_celebensis_NurHerjayanti.JPG",
+  },
+  {
+    credit: "Nur Herjayanti",
+    src: "/carousels/Rhyticeros_cassidix_NurHerjayanti.JPG",
+  },
+  {
+    credit: "Daniel Lumbantobing",
+    src: "/carousels/Telmatherina_DanielLumbantobing.JPG",
+  },
+  { credit: "Arif Maulana", src: "/carousels/Tylomelania_ArifMaulana.JPG" },
+];
+
+// Get current locale and translations
+const currentLocale: SupportedLocale = getLocaleFromUrl(Astro.url);
+const translations = await loadTranslations(currentLocale);
+
+// Generate localized URLs
+const aboutUrl = getLocalizedUrl(
+  currentLocale === "id" ? "tentang" : "about",
+  currentLocale,
+);
+const programsUrl = getLocalizedUrl(
+  currentLocale === "id" ? "program" : "programs",
+  currentLocale,
+);
+---
+
+<div class="relative h-screen bg-black">
+  <div
+    id="hero-bg-1"
+    class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+    style={`background-image: url('${images[0].src}');`}
+  >
+  </div>
+  <div
+    id="hero-bg-2"
+    class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+  >
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent">
+  </div>
+  <div
+    class="relative z-10 flex flex-col items-start justify-end h-full text-white p-16"
+  >
+    <h1 class="text-3xl md:text-5xl font-serif leading-loose max-w-4xl">
+      Advancing biodiversity science in Indonesia through collaborative research
+      and public engagement
+    </h1>
+    <div class="mt-8 flex gap-4 items-center w-full justify-between">
+      <div class="flex gap-4">
+        <a
+          href={aboutUrl}
+          class="border border-white bg-black/30 rounded-md px-4 md:px-6 py-2 md:py-3 font-semibold hover:bg-white hover:text-black text-sm md:text-base"
+        >
+          ABOUT ISES
+        </a>
+        <a
+          href={programsUrl}
+          class="flex items-center gap-2 font-semibold text-sm md:text-base"
+        >
+          OUR PROGRAMME
+        </a>
+      </div>
+      <p class="text-xs text-white">
+        Illustration by <span id="credit" class="font-semibold"
+          >{images[0].credit}</span
+        >
+      </p>
+    </div>
+  </div>
+</div>
+<script is:inline define:vars={{ images }}>
+  const bg1 = document.getElementById("hero-bg-1");
+  const bg2 = document.getElementById("hero-bg-2");
+  const credit = document.getElementById("credit");
+
+  if (bg1 && bg2 && credit) {
+    let currentIndex = 0;
+    let activeBg = 1;
+
+    // Preload images
+    images.forEach((image) => {
+      new Image().src = image.src;
+    });
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      const nextImageSrc = images[currentIndex].src;
+      const nextCredit = images[currentIndex].credit;
+
+      if (activeBg === 1) {
+        // bg2 is hidden, set new image and fade it in
+        bg2.style.backgroundImage = `url('${nextImageSrc}')`;
+        bg1.style.opacity = 0;
+        bg2.style.opacity = 1;
+        activeBg = 2;
+      } else {
+        // bg1 is hidden, set new image and fade it in
+        bg1.style.backgroundImage = `url('${nextImageSrc}')`;
+        bg2.style.opacity = 0;
+        bg1.style.opacity = 1;
+        activeBg = 1;
+      }
+      credit.textContent = nextCredit;
+    }, 5000);
+  }
+</script>

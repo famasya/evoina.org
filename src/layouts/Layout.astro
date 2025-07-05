@@ -1,33 +1,42 @@
 ---
 import "@fontsource-variable/inter";
 import { ClientRouter } from "astro:transitions";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+import Footer from "../components/footer.astro";
+import Header from "../components/header.astro";
+import {
+  getLocaleFromUrl,
+  loadTranslations,
+  type SupportedLocale,
+} from "../i18n/translate";
+
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+
+// Get current locale from URL
+const currentLocale: SupportedLocale = getLocaleFromUrl(Astro.url);
+
+// Load translations for the current locale
+const translations = await loadTranslations(currentLocale);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
   <head>
     <ClientRouter />
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="The Indonesian Society for Evolutionary Studies (ISES)"
-    />
+    <meta name="description" content={translations.meta.site_description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} - evoina.org</title>
+    <title>{title} - {translations.meta.site_title}</title>
   </head>
   <body class="font-inter h-full min-h-screen">
-    <Header />
+    <Header currentLocale={currentLocale} translations={translations} />
     <slot />
-    <Footer />
+    <Footer currentLocale={currentLocale} translations={translations} />
   </body>
 </html>
 <style is:global>

@@ -1,8 +1,9 @@
 ---
-title: "First Archive Post"
+title: "Exploring the Depths of Biodiversity"
 pubDate: 2024-01-01
-description: "This is the first sample archive post."
+description: "An in-depth exploration of biodiversity and its importance for our planet's future."
 category: "Biodiversity"
+locale: "en"
 image: "/carousels/Arachnida_ArifMaulana.JPG"
 ---
 

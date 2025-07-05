@@ -1,59 +1,59 @@
 ---
 import { Mail, University } from "@lucide/astro";
-import PageTitle from "../components/page-title.astro";
-import Layout from "../layouts/layout.astro";
+import PageTitle from "../../components/page-title.astro";
+import Layout from "../../layouts/layout.astro";
 const committeeChairs = [
   {
     name: "Dr. Arif Maulana",
-    title: "Chair",
+    title: "Ketua",
     description:
-      "Specialist in Indonesian Arachnida taxonomy and ecology. His research focuses on endemic spider diversity and their role in Indonesian tropical ecosystems.",
+      "Spesialis dalam taksonomi dan ekologi Arachnida Indonesia. Penelitiannya berfokus pada keanekaragaman laba-laba endemik dan perannya dalam ekosistem tropis Indonesia.",
     image: "/carousels/Arachnida_ArifMaulana.JPG",
-    university: "University of Indonesia",
+    university: "Universitas Indonesia",
     contact: "arifmaulana@ises.org",
   },
   {
     name: "Dr. Nur Herjayanti",
-    title: "Vice Chair",
+    title: "Wakil Ketua",
     description:
-      "Herpetologist and entomologist focusing on evolution and conservation of Indonesian reptiles and insects. Active in Sulawesi biodiversity research.",
+      "Ahli herpetologi dan entomologi dengan fokus pada evolusi dan konservasi reptil dan serangga Indonesia. Aktif dalam penelitian keanekaragaman hayati Sulawesi.",
     image: "/carousels/Cuora_amboinensis_NurHerjayanti.JPG",
-    university: "IPB University",
+    university: "Institut Pertanian Bogor",
     contact: "nurherjayanti@ises.org",
   },
   {
     name: "Dr. Heru Handika",
-    title: "Secretary",
+    title: "Sekretaris",
     description:
-      "Indonesian small mammal researcher with expertise in molecular phylogenetics and biogeography. Specializes in endemic mammal evolution of Sulawesi and Maluku.",
+      "Peneliti mamalia kecil Indonesia dengan keahlian dalam filogenetik molekuler dan biogeografi. Spesialisasi pada evolusi mamalia endemik Sulawesi dan Maluku.",
     image: "/carousels/Haeromys_minahasae_HeruHandika.jpg",
     university: "Louisiana State University",
     contact: "heruhandika@ises.org",
   },
   {
     name: "Dr. Daniel Lumbantobing",
-    title: "Treasurer",
+    title: "Bendahara",
     description:
-      "Ichthyologist focusing on systematics and evolution of Indonesian freshwater fish. His research contributes to understanding endemic fish diversification in Sulawesi.",
+      "Iktiolog dengan fokus pada sistematika dan evolusi ikan air tawar Indonesia. Penelitiannya berkontribusi pada pemahaman diversifikasi ikan endemik Sulawesi.",
     image: "/carousels/Telmatherina_DanielLumbantobing.JPG",
-    university: "Sam Ratulangi University",
+    university: "Universitas Sam Ratulangi",
     contact: "daniellumbantobing@ises.org",
   },
   {
     name: "Dr. Sarah Botanica",
-    title: "Program Coordinator",
+    title: "Koordinator Program",
     description:
-      "Evolutionary botanist researching Indonesian tropical plant adaptations. Experienced in comparative genomics and molecular ecology of rainforest plants.",
+      "Ahli botani evolusioner yang meneliti adaptasi tumbuhan tropis Indonesia. Berpengalaman dalam genomik komparatif dan ekologi molekuler tumbuhan hutan hujan.",
     image: "/carousels/Tylomelania_ArifMaulana.JPG",
-    university: "Gadjah Mada University",
+    university: "Universitas Gadjah Mada",
     contact: "sarahbotanica@ises.org",
   },
 ];
 ---
 
-<Layout title="Committee Chairs">
+<Layout title="Ketua Komite">
   <PageTitle
-    title="Committee Chairs"
+    title="Ketua Komite"
     background="/carousels/Haeromys_minahasae_HeruHandika.jpg"
   />
 
@@ -90,18 +90,18 @@ const committeeChairs = [
     </div>
     <div class="text-center mt-8 bg-eggshell-500 p-8 rounded-xl">
       <h1 class="font-serif text-3xl">
-        Interested in being part of the effort?
+        Tertarik menjadi bagian dari upaya ini?
       </h1>
       <p class="text-lg">
-        Please take a look at how you can contribute and consider joining us
-        here:
+        Silakan lihat bagaimana Anda dapat berkontribusi dan pertimbangkan untuk
+        bergabung dengan kami di sini:
       </p>
       <div class="mt-4">
         <a
           href="#"
           class="bg-brunswick_green text-white hover:bg-brunswick_green/90 transition-colors rounded-md px-6 py-3 font-semibold"
         >
-          JOIN US
+          BERGABUNG
         </a>
       </div>
     </div>

@@ -1,12 +1,12 @@
 ---
 import { ChevronLeftCircle } from "@lucide/astro";
 import { getCollection, type CollectionEntry } from "astro:content";
-import PageTitle from "../../components/page-title.astro";
-import Layout from "../../layouts/layout.astro";
+import PageTitle from "../../../components/page-title.astro";
+import Layout from "../../../layouts/layout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("archives", ({ data }) => {
-    return data.locale === "en";
+    return data.locale === "id";
   });
   const categories = [...new Set(posts.map((post) => post.data.category))];
   return categories.map((category) => ({
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 
 const { category } = Astro.params;
 const posts = await getCollection("archives", ({ data }) => {
-  return data.category === category && data.locale === "en";
+  return data.category === category && data.locale === "id";
 });
 
 const sortedPosts = posts.sort(
@@ -25,16 +25,16 @@ const sortedPosts = posts.sort(
 );
 ---
 
-<Layout title={`Archives: ${category}`}>
-  <PageTitle title={`Category: ${category}`} />
+<Layout title={`Arsip: ${category}`}>
+  <PageTitle title={`Kategori: ${category}`} />
 
   <section class="py-12">
     <div class="container mx-auto px-4">
       <div class="mb-8 text-center">
         <a
-          href="/archives"
+          href="/id/arsip"
           class="text-white bg-black hover:bg-black/80 transition-colors px-4 py-2 rounded-full flex items-center gap-2 w-fit"
-          ><ChevronLeftCircle /> Back to all archives</a
+          ><ChevronLeftCircle /> Kembali ke semua arsip</a
         >
       </div>
 
@@ -43,7 +43,7 @@ const sortedPosts = posts.sort(
           sortedPosts.map((post) => (
             <li>
               <a
-                href={`/post/${post.slug.split("/").pop() || post.slug}`}
+                href={`/id/post/${post.slug.split("/").pop() || post.slug}`}
                 class="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
                 {post.data.image && (
@@ -57,7 +57,8 @@ const sortedPosts = posts.sort(
                   <p class="text-sm text-gray-500 mb-2">{post.data.category}</p>
                   <h2 class="text-2xl font-serif mb-2">{post.data.title}</h2>
                   <p class="text-gray-600 mb-2">
-                    Published on: {post.data.pubDate.toLocaleDateString()}
+                    Dipublikasikan pada:{" "}
+                    {post.data.pubDate.toLocaleDateString("id-ID")}
                   </p>
                   <p class="text-lg">{post.data.description}</p>
                 </div>

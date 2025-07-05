@@ -1,0 +1,49 @@
+{
+  "navigation": {
+    "about": "About",
+    "programs": "Programs",
+    "committee_chairs": "Committee Chairs",
+    "resources": "Resources",
+    "archives": "Archives"
+  },
+  "buttons": {
+    "join_us": "JOIN US",
+    "register_member": "Register as Member",
+    "contribute_dbspesies": "Contribute to DBSpesies",
+    "read_more": "Read more",
+    "read_all_news": "Read All News & Updates",
+    "what_we_do": "What We Do",
+    "back_to_archives": "Back to all archives"
+  },
+  "labels": {
+    "latest_news": "Latest News & Updates",
+    "research_activities": "Research Activities",
+    "follow_social": "Follow Us on Social Media",
+    "member_benefits": "Member Benefits",
+    "dbspesies_project": "DBSpesies Project"
+  },
+  "common": {
+    "prev": "Prev",
+    "next": "Next",
+    "or": "or",
+    "copyright": "Copyright"
+  },
+  "homepage": {
+    "welcome_title": "Welcome to the Indonesian Society for Evolutionary Studies (ISES)",
+    "welcome_description": "We provide a forum for researchers and students interested in advancing our understanding of the origin, evolution, and maintenance of biodiversity in Indonesia. Our society is dedicated to supporting collaborative research and promote dialogue across evolutionary-related disciplines and enhance public understanding of our field.",
+    "join_community_title": "Join Our Community of Evolutionary Researchers",
+    "join_community_description": "Be part of Indonesia's premier evolutionary biology network. Connect with researchers, access exclusive resources, and contribute to groundbreaking discoveries."
+  },
+  "benefits": {
+    "exclusive_resources": "Access to exclusive research resources",
+    "priority_registration": "Priority registration for conferences",
+    "networking": "Networking opportunities",
+    "contribute_biodiversity": "Contribute to biodiversity database",
+    "share_research": "Share your research data",
+    "collaborate": "Collaborate with researchers"
+  },
+  "meta": {
+    "site_description": "The Indonesian Society for Evolutionary Studies (ISES)",
+    "site_title": "evoina.org"
+  }
+}
