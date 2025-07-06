@@ -36,14 +36,14 @@ const allText = locale === "en" ? "All" : "Semua";
 const publishedText =
   locale === "en" ? "Published on:" : "Dipublikasikan pada:";
 const postUrlPrefix = locale === "en" ? "/post/" : "/id/post/";
-const archivesUrlPrefix = locale === "en" ? "/archives" : "/id/arsip";
+const archivesUrlPrefix = locale === "en" ? "/archives" : "/id/archives";
 ---
 
 <Layout title={archivesPage.data.title}>
   <PageTitle title={archivesPage.data.page_title} />
 
   <section class="py-12">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto">
       <div class="flex flex-wrap gap-2 mb-8 justify-center">
         <a
           href={archivesUrlPrefix}

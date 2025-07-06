@@ -1,82 +1,103 @@
 ---
+import { ChevronLeftCircle } from "@lucide/astro";
 import { getCollection, type CollectionEntry } from "astro:content";
-import Button from "../../../components/Button.astro";
 import PageTitle from "../../../components/PageTitle.astro";
-import { getLocaleFromUrl, loadTranslations } from "../../../i18n";
+import {
+  getLocaleFromUrl,
+  getLocalizedUrl,
+  loadTranslations,
+} from "../../../i18n";
 import Layout from "../../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  // Get all archive entries for Indonesian locale
-  const allArchiveEntries = await getCollection("archives", ({ data }) => {
-    return data.locale === "id";
-  });
+  // Get all posts from both locales
+  const allPosts = await getCollection("archives");
 
-  // Get unique categories for Indonesian archives
-  const categories = [
-    ...new Set(allArchiveEntries.map((entry) => entry.data.category)),
-  ];
+  // Get unique categories from all posts
+  const categories = [...new Set(allPosts.map((post) => post.data.category))];
 
-  return categories.map((category) => ({
-    params: { category },
-    props: {
-      category,
-      entries: allArchiveEntries.filter(
-        (entry) => entry.data.category === category,
-      ),
-    },
-  }));
+  // Generate paths for both locales
+  const paths = [];
+  for (const category of categories) {
+    // English path
+    paths.push({
+      params: { category },
+    });
+    // Indonesian path
+    paths.push({
+      params: { category },
+    });
+  }
+
+  return paths;
 }
-
-type Props = {
-  category: string;
-  entries: CollectionEntry<"archives">[];
-};
-
-const { category, entries } = Astro.props;
 
 // Get current locale from URL
 const currentLocale = getLocaleFromUrl(Astro.url);
 const translations = await loadTranslations(currentLocale);
+
+const { category } = Astro.params;
+const posts = await getCollection("archives", ({ data }) => {
+  return data.category === category && data.locale === currentLocale;
+});
+
+const sortedPosts = posts.sort(
+  (a: CollectionEntry<"archives">, b: CollectionEntry<"archives">) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Get localized date format
+const dateLocale = currentLocale === "id" ? "id-ID" : "en-US";
+const categoryLabel = currentLocale === "id" ? "Kategori" : "Category";
+const publishedLabel =
+  currentLocale === "id" ? "Dipublikasikan pada" : "Published on";
 ---
 
-<Layout title={`${category} - Archives`}>
-  <PageTitle title={`${category} Archives`} />
-  <main class="auto-padding my-6">
-    <div class="mb-8">
-      <Button
-        title={translations.buttons.back_to_archives}
-        href="/id/archives"
-        extendClass="px-6"
-      />
-    </div>
+<Layout title={`${currentLocale === "id" ? "Arsip" : "Archives"}: ${category}`}>
+  <PageTitle title={`${categoryLabel}: ${category}`} />
 
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {
-        entries.map((entry) => (
-          <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-            {entry.data.image && (
-              <img
-                src={entry.data.image}
-                alt={entry.data.title}
-                class="w-full h-48 object-cover"
-              />
-            )}
-            <div class="p-6">
-              <h2 class="text-xl font-semibold mb-2">{entry.data.title}</h2>
-              <p class="text-gray-600 mb-4">{entry.data.description}</p>
-              <div class="flex justify-between items-center text-sm text-gray-500">
-                <span>{entry.data.pubDate.toLocaleDateString("id-ID")}</span>
-                <a
-                  href={`/id/post/${entry.slug.split("/").pop()}`}
-                  class="text-blue-600 hover:text-blue-800 font-medium"
-                >
-                  {translations.buttons.read_more}
-                </a>
-              </div>
-            </div>
-          </article>
-        ))
-      }
+  <section class="py-12">
+    <div class="container mx-auto">
+      <div class="mb-8 text-center">
+        <a
+          href={getLocalizedUrl("archives", currentLocale)}
+          class="text-white bg-black hover:bg-black/80 transition-colors px-4 py-2 rounded-full flex items-center gap-2 w-fit"
+          ><ChevronLeftCircle /> {translations.buttons.back_to_archives}</a
+        >
+      </div>
+
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          sortedPosts.map((post) => (
+            <li>
+              <a
+                href={getLocalizedUrl(
+                  `post/${post.slug.split("/").pop() || post.slug}`,
+                  currentLocale,
+                )}
+                class="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                {post.data.image && (
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    class="w-full h-48 object-cover"
+                  />
+                )}
+                <div class="p-6">
+                  <p class="text-sm text-gray-500 mb-2">{post.data.category}</p>
+                  <h2 class="text-2xl font-serif mb-2">{post.data.title}</h2>
+                  <p class="text-gray-600 mb-2">
+                    {publishedLabel}:{" "}
+                    {post.data.pubDate.toLocaleDateString(dateLocale)}
+                  </p>
+                  <p class="text-lg">{post.data.description}</p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
-  </main>
+  </section>
 </Layout>
