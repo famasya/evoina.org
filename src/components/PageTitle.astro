@@ -13,9 +13,11 @@ const { title, background } = Astro.props;
     ? `background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('${background.startsWith("/") ? background : "/" + background}')`
     : ""}
 >
-  <div class="auto-padding bg-gradient-to-t from-black/70 to-transparent py-6">
-    <h2 class="font-serif text-4xl">
-      {title}
-    </h2>
+  <div class="bg-gradient-to-t from-black/70 to-transparent py-6">
+    <div class="auto-padding">
+      <h2 class="font-serif text-4xl">
+        {title}
+      </h2>
+    </div>
   </div>
 </div>

@@ -31,7 +31,8 @@ const archivesUrl = getLocalizedUrl(archivesRoute, currentLocale);
     ? `background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('${background}')`
     : ""}
 >
-  <div class="auto-padding bg-gradient-to-t from-black/70 to-transparent py-6">
+  <div class="bg-gradient-to-t from-black/70 to-transparent py-6">
+    <div class="auto-padding">
     <div class="flex">
       <a
         href={archivesUrl}
@@ -54,5 +55,6 @@ const archivesUrl = getLocalizedUrl(archivesRoute, currentLocale);
         >Published on: {pubDate.toLocaleDateString()}</span
       >
     </p>
+    </div>
   </div>
 </div>
