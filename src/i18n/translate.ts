@@ -35,6 +35,9 @@ export interface Translations {
     welcome_description: string;
     join_community_title: string;
     join_community_description: string;
+    about_title: string;
+    programme_title: string;
+    title: string;
   };
   benefits: {
     exclusive_resources: string;

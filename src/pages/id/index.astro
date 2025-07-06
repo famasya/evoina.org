@@ -9,10 +9,15 @@ import ResearchActivities from "../index/research-activities.astro";
 // Get current locale from URL
 const currentLocale = getLocaleFromUrl(Astro.url);
 const translations = await loadTranslations(currentLocale);
+console.log(translations.homepage.title, 111);
 ---
 
-<Layout title="The Nature Place Day Camp">
-  <Hero />
+<Layout title={translations.meta.site_title}>
+  <Hero
+    title={translations.homepage.title}
+    about_title={translations.homepage.about_title}
+    programme_title={translations.homepage.programme_title}
+  />
   <div class="m-16 flex flex-col md:flex-row items-center gap-8">
     <div class="relative w-full md:w-1/2">
       <img
