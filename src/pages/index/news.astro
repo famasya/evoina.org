@@ -7,7 +7,6 @@ import {
   getLocalizedUrl,
   loadTranslations,
 } from "../../i18n";
-import Layout from "../../layouts/Layout.astro";
 
 // Get current locale from URL
 const currentLocale = getLocaleFromUrl(Astro.url);
@@ -30,14 +29,14 @@ const latestNews = sortedPosts.slice(0, 5);
 const dateLocale = currentLocale === "id" ? "id-ID" : "en-US";
 ---
 
-<Layout title={translations.labels.latest_news}>
+<div>
   <div class="flex flex-row items-center justify-center gap-8">
     <h2 class="font-serif text-3xl mb-4 bg-eggshell-500 px-4 py-1">
       {translations.labels.latest_news}
     </h2>
   </div>
   <section class="py-12">
-    <div class="auto-padding">
+    <div class="container mx-auto px-8 md:px-0">
       <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
         {
           latestNews.map((post) => (
@@ -95,7 +94,7 @@ const dateLocale = currentLocale === "id" ? "id-ID" : "en-US";
       </div>
     </div>
 
-    <div class="auto-padding">
+    <div class="container mx-auto px-8 md:px-0">
     <div
       class="bg-gradient-to-r from-brunswick_green to-brunswick_green-600 rounded-2xl p-8 md:p-12 text-white"
     >
@@ -180,7 +179,7 @@ const dateLocale = currentLocale === "id" ? "id-ID" : "en-US";
     </div>
     </div>
   </section>
-</Layout>
+</div>
 
 <style>
   /* Mobile optimizations */
