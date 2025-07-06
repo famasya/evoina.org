@@ -62,10 +62,10 @@ const { Content } = await archivesPage.render();
       <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           sortedPosts.map((post) => (
-            <li>
+            <div>
               <a
                 href={`${locale === "en" ? "/post/" : "/id/post/"}${post.slug.split("/").pop() || post.slug}`}
-                class="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+                class="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
               >
                 {post.data.image && (
                   <img
@@ -75,18 +75,22 @@ const { Content } = await archivesPage.render();
                   />
                 )}
                 <div class="p-6">
-                  <p class="text-sm text-gray-500 mb-2">{post.data.category}</p>
-                  <h2 class="text-2xl font-serif mb-2">{post.data.title}</h2>
-                  <p class="text-gray-600 mb-2">
+                  <p class="text-sm text-gray-500 mb-1 md:mb-2">
+                    {post.data.category}
+                  </p>
+                  <h2 class="text-lg md:text-2xl font-serif mb-2">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-gray-600">
                     {locale === "en" ? "Published on:" : "Dipublikasikan pada:"}{" "}
                     {post.data.pubDate.toLocaleDateString(
                       locale === "en" ? "en-US" : "id-ID",
                     )}
                   </p>
-                  <p class="text-lg">{post.data.description}</p>
+                  <p class="md:text-lg">{post.data.description}</p>
                 </div>
               </a>
-            </li>
+            </div>
           ))
         }
       </ul>
