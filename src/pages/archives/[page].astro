@@ -1,12 +1,26 @@
 ---
 import { Archive } from "@lucide/astro";
 import { getCollection } from "astro:content";
-import PageTitle from "../components/PageTitle.astro";
-import Layout from "../layouts/Layout.astro";
+import PageTitle from "../../components/PageTitle.astro";
+import Layout from "../../layouts/Layout.astro";
 
+export async function getStaticPaths() {
+  const locale = "en";
+  const pageSize = 5;
+  const posts = await getCollection(
+    "archives",
+    ({ data }) => data.locale === locale,
+  );
+  const totalPages = Math.ceil(posts.length / pageSize);
+  return Array.from({ length: totalPages }, (_, i) => ({
+    params: { page: String(i + 1) },
+  }));
+}
+
+const { page } = Astro.params;
 const locale = "en";
 const pageSize = 6;
-const currentPage = 1;
+const currentPage = parseInt(page ?? "1");
 
 // Get the archives page content for the current locale
 const archivesPages = await getCollection(
@@ -93,20 +107,28 @@ const archivesUrlPrefix = "/archives";
           ))
         }
       </ul>
-      <div class="flex justify-center gap-4 items-center mt-8">
-        <div>
-          {
-            currentPage < totalPages && (
-              <a
-                href={`/archives/${currentPage + 1}`}
-                class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
-              >
-                Next
-              </a>
-            )
-          }
-        </div>
-        <div>Page {currentPage} of {totalPages}</div>
+      <div class="flex justify-center items-center gap-4 mt-8">
+        {
+          currentPage > 1 && (
+            <a
+              href={`/archives/${currentPage - 1}`}
+              class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+            >
+              Previous
+            </a>
+          )
+        }
+        <span>Page {currentPage} of {totalPages}</span>
+        {
+          currentPage < totalPages && (
+            <a
+              href={`/archives/${currentPage + 1}`}
+              class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+            >
+              Next
+            </a>
+          )
+        }
       </div>
     </div>
   </section>
