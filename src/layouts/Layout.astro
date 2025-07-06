@@ -1,8 +1,8 @@
 ---
 import "@fontsource-variable/inter";
 import { ClientRouter } from "astro:transitions";
-import Footer from "../components/footer.astro";
-import Header from "../components/header.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 import {
   getLocaleFromUrl,
   loadTranslations,
@@ -36,7 +36,7 @@ const translations = await loadTranslations(currentLocale);
   <body class="font-inter h-full min-h-screen">
     <Header currentLocale={currentLocale} translations={translations} />
     <slot />
-    <Footer currentLocale={currentLocale} translations={translations} />
+    <Footer translations={translations} />
   </body>
 </html>
 <style is:global>

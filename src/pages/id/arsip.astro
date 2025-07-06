@@ -1,7 +1,7 @@
 ---
 import { Archive } from "@lucide/astro";
 import { getCollection, type CollectionEntry } from "astro:content";
-import PageTitle from "../../components/page-title.astro";
+import PageTitle from "../../components/PageTitle.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const posts = await getCollection("archives", ({ data }) => {
