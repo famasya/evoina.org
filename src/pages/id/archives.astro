@@ -19,6 +19,16 @@ if (!archivesPage) {
   throw new Error(`Archives page not found for locale: ${locale}`);
 }
 
+// Get posts for the current locale
+const posts = await getCollection("archives", ({ data }) => {
+  return data.locale === locale;
+});
+const categories = [...new Set(posts.map((post) => post.data.category))];
+
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
 const { Content } = await archivesPage.render();
 ---
 
@@ -27,9 +37,59 @@ const { Content } = await archivesPage.render();
     title={archivesPage.data.page_title}
     background={archivesPage.data.background}
   />
-  <main
-    class="auto-padding my-6 rounded-md font-light text-lg prose prose-lg max-w-none"
-  >
-    <Content />
-  </main>
+
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap gap-2 mb-8 justify-center">
+        <a
+          href={locale === "en" ? "/archives" : "/id/arsip"}
+          class="px-4 py-2 rounded-full border transition-colors bg-gray-800 text-white border-gray-800"
+        >
+          {locale === "en" ? "All" : "Semua"}
+        </a>
+        {
+          categories.map((category) => (
+            <a
+              href={`${locale === "en" ? "/archives" : "/id/arsip"}/${category}`}
+              class="px-4 py-2 rounded-full border transition-colors bg-white text-gray-800 border-gray-200 hover:bg-gray-50 flex items-center gap-2"
+            >
+              {category}
+            </a>
+          ))
+        }
+      </div>
+
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          sortedPosts.map((post) => (
+            <li>
+              <a
+                href={`${locale === "en" ? "/post/" : "/id/post/"}${post.slug.split("/").pop() || post.slug}`}
+                class="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                {post.data.image && (
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    class="w-full h-48 object-cover"
+                  />
+                )}
+                <div class="p-6">
+                  <p class="text-sm text-gray-500 mb-2">{post.data.category}</p>
+                  <h2 class="text-2xl font-serif mb-2">{post.data.title}</h2>
+                  <p class="text-gray-600 mb-2">
+                    {locale === "en" ? "Published on:" : "Dipublikasikan pada:"}{" "}
+                    {post.data.pubDate.toLocaleDateString(
+                      locale === "en" ? "en-US" : "id-ID",
+                    )}
+                  </p>
+                  <p class="text-lg">{post.data.description}</p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 </Layout>

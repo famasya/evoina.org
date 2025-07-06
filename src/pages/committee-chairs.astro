@@ -1,35 +1,90 @@
 ---
-import { getCollection } from "astro:content";
 import PageTitle from "../components/PageTitle.astro";
 import { getLocaleFromUrl } from "../i18n";
 import Layout from "../layouts/Layout.astro";
 
 const locale = getLocaleFromUrl(Astro.url);
 
-// Get the committee-chairs page content for the current locale
-const committeePages = await getCollection("pages", ({ data }) => {
-  return data.locale === locale;
-});
+const committeeChairs = [
+  {
+    name: "Dr. Arif Maulana",
+    title: "Chair",
+    affiliation: "University of Indonesia",
+    email: "arifmaulana@ises.org",
+    description:
+      "Specialist in Indonesian Arachnida taxonomy and ecology. His research focuses on endemic spider diversity and their role in Indonesian tropical ecosystems.",
+  },
+  {
+    name: "Dr. Nur Herjayanti",
+    title: "Vice Chair",
+    affiliation: "IPB University",
+    email: "nurherjayanti@ises.org",
+    description:
+      "Herpetologist and entomologist focusing on evolution and conservation of Indonesian reptiles and insects. Active in Sulawesi biodiversity research.",
+  },
+  {
+    name: "Dr. Heru Handika",
+    title: "Secretary",
+    affiliation: "Louisiana State University",
+    email: "heruhandika@ises.org",
+    description:
+      "Indonesian small mammal researcher with expertise in molecular phylogenetics and biogeography. Specializes in endemic mammal evolution of Sulawesi and Maluku.",
+  },
+  {
+    name: "Dr. Daniel Lumbantobing",
+    title: "Treasurer",
+    affiliation: "Sam Ratulangi University",
+    email: "daniellumbantobing@ises.org",
+    description:
+      "Ichthyologist focusing on systematics and evolution of Indonesian freshwater fish. His research contributes to understanding endemic fish diversification in Sulawesi.",
+  },
+  {
+    name: "Dr. Sarah Botanica",
+    title: "Program Coordinator",
+    affiliation: "Gadjah Mada University",
+    email: "sarahbotanica@ises.org",
+    description:
+      "Evolutionary botanist researching Indonesian tropical plant adaptations. Experienced in comparative genomics and molecular ecology of rainforest plants.",
+  },
+];
 
-const committeePage = committeePages.find((page) =>
-  page.slug.endsWith("committee-chairs"),
-);
-
-if (!committeePage) {
-  throw new Error(`Committee chairs page not found for locale: ${locale}`);
-}
-
-const { Content } = await committeePage.render();
+const joinUsLink = "#";
 ---
 
-<Layout title={committeePage.data.title}>
+<Layout title="Committee Chairs">
   <PageTitle
-    title={committeePage.data.page_title}
-    background={committeePage.data.background}
+    title="Committee Chairs"
+    background="/carousels/Haeromys_minahasae_HeruHandika.jpg"
   />
-  <main
-    class="auto-padding my-6 rounded-md font-light text-lg prose prose-lg max-w-none"
-  >
-    <Content />
+  <main class="auto-padding my-6 rounded-md font-light text-lg max-w-none">
+    {
+      committeeChairs.map((chair) => (
+        <section class="mb-8 border-b border-gray-300 pb-4 last:border-0 last:pb-0">
+          <h2 class="text-xl font-semibold mb-1">
+            {chair.name} - {chair.title}
+          </h2>
+          <p class="font-semibold">{chair.affiliation}</p>
+          <p>
+            📧{" "}
+            <a href={`mailto:${chair.email}`} class="text-blue-600 underline">
+              {chair.email}
+            </a>
+          </p>
+          <p class="mt-2">{chair.description}</p>
+        </section>
+      ))
+    }
+    <section class="mt-12">
+      <h2 class="text-xl font-semibold mb-2">
+        Interested in being part of the effort?
+      </h2>
+      <p>
+        Please take a look at how you can contribute and consider joining us
+        here:
+      </p>
+      <p class="mt-2">
+        <a href={joinUsLink} class="text-blue-600 underline">JOIN US</a>
+      </p>
+    </section>
   </main>
 </Layout>

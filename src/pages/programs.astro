@@ -1,35 +1,122 @@
 ---
-import { getCollection } from "astro:content";
 import PageTitle from "../components/PageTitle.astro";
 import { getLocaleFromUrl } from "../i18n";
 import Layout from "../layouts/Layout.astro";
 
 const locale = getLocaleFromUrl(Astro.url);
 
-// Get the programs page content for the current locale
-const programsPages = await getCollection("pages", ({ data }) => {
-  return data.locale === locale;
-});
+const programs = [
+  {
+    category: "ISES Core Programs",
+    description:
+      "The Indonesian Society for Evolutionary Studies (ISES) runs various programs to advance evolutionary studies in Indonesia and build a strong research community.",
+    items: [
+      {
+        title: "Membership & Networking",
+        details: [
+          "ISES membership program connects researchers, students, and practitioners in evolutionary fields from across Indonesia and Indonesian diaspora abroad.",
+          "Access to exclusive research resources",
+          "Priority registration for conferences and workshops",
+          "Research collaboration opportunities",
+          "Regular newsletters and updates",
+        ],
+      },
+      {
+        title: "DBSpesies",
+        details: [
+          "A comprehensive Indonesian biodiversity database project, collecting species information from various sources to support evolutionary research.",
+          "Species and distribution data contribution",
+          "Access to integrated database",
+          "Collaboration with research institutions",
+          "Biodiversity data standardization",
+        ],
+      },
+      {
+        title: "Conferences & Workshops",
+        details: [
+          "Regular scientific meetings to share latest research, build collaborations, and develop researcher capacity.",
+          "Annual ISES conference",
+          "Research methodology workshops",
+          "Monthly online seminars",
+          "Evolutionary data analysis training",
+        ],
+      },
+      {
+        title: "Education & Outreach",
+        details: [
+          "Educational programs to enhance public understanding of evolution and Indonesian biodiversity.",
+          "Educational materials for schools",
+          "Student mentoring programs",
+          "Public awareness campaigns",
+          "Media collaboration",
+        ],
+      },
+    ],
+  },
+  {
+    category: "Upcoming Programs",
+    items: [
+      {
+        title: "Research Grants",
+        details: [
+          "Grant program to support evolutionary research by young Indonesian researchers, focusing on local biodiversity.",
+        ],
+      },
+      {
+        title: "Scientific Publication",
+        details: [
+          "Development of ISES scientific journal to publish high-quality evolutionary research from Indonesia.",
+        ],
+      },
+    ],
+  },
+];
 
-const programsPage = programsPages.find((page) =>
-  page.slug.endsWith("programs"),
-);
-
-if (!programsPage) {
-  throw new Error(`Programs page not found for locale: ${locale}`);
-}
-
-const { Content } = await programsPage.render();
+const participationLinks = {
+  register: "https://tinyurl.com/dbmember",
+  contribute: "https://tinyurl.com/dbspesies",
+};
 ---
 
-<Layout title={programsPage.data.title}>
+<Layout title="Programs">
   <PageTitle
-    title={programsPage.data.page_title}
-    background={programsPage.data.background}
+    title="Programs"
+    background="carousels/Graphium_NurHerjayanti.JPG"
   />
-  <main
-    class="auto-padding my-6 rounded-md font-light text-lg prose prose-lg max-w-none"
-  >
-    <Content />
+  <main class="auto-padding my-6 rounded-md font-light text-lg max-w-none">
+    {
+      programs.map((program) => (
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-2">{program.category}</h2>
+          {program.description && <p class="mb-4">{program.description}</p>}
+          {program.items.map((item) => (
+            <article class="mb-4">
+              <h3 class="text-xl font-semibold">{item.title}</h3>
+              <ul class="list-disc list-inside mt-1">
+                {item.details.map((detail) => (
+                  <li>{detail}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </section>
+      ))
+    }
+    <section class="mt-12">
+      <h2 class="text-xl font-semibold mb-2">Interested in Participating?</h2>
+      <p>
+        Join ISES programs and contribute to the advancement of evolutionary
+        studies in Indonesia.
+      </p>
+      <p class="mt-2">
+        <a
+          href={participationLinks.register}
+          class="text-blue-600 underline mr-4">Register as Member</a
+        >
+        <a href={participationLinks.contribute} class="text-blue-600 underline"
+          >Contribute to DBSpesies</a
+        >
+      </p>
+    </section>
   </main>
 </Layout>

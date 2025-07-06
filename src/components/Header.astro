@@ -254,3 +254,74 @@ const currentUrl = getLocalizedUrl(currentPath, currentLocale);
     transition-duration: 300ms;
   }
 </style>
+
+<script is:inline>
+  // This script is designed to be idempotent and work with Astro View Transitions.
+  // It adds a single delegated event listener to the document and runs only once.
+  if (!document.body.hasAttribute("data-header-listeners-attached")) {
+    document.body.setAttribute("data-header-listeners-attached", "true");
+
+    const setMenuState = (isOpen) => {
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuToggleBtn = document.getElementById("menu-toggle-btn");
+      if (!mobileMenu || !menuToggleBtn) return;
+
+      mobileMenu.classList.toggle("translate-x-full", !isOpen);
+      mobileMenu.classList.toggle("translate-x-0", isOpen);
+      document.body.style.overflow = isOpen ? "hidden" : "";
+
+      const iconSpans = menuToggleBtn.querySelectorAll("span");
+      if (iconSpans.length === 3) {
+        iconSpans[0].classList.toggle("rotate-45", isOpen);
+        iconSpans[0].classList.toggle("translate-y-2", isOpen);
+        iconSpans[1].classList.toggle("opacity-0", isOpen);
+        iconSpans[1].classList.toggle("opacity-100", !isOpen);
+        iconSpans[2].classList.toggle("-rotate-45", isOpen);
+        iconSpans[2].classList.toggle("-translate-y-2", isOpen);
+      }
+    };
+
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      if (!mobileMenu) return;
+
+      const isMenuOpen = mobileMenu.classList.contains("translate-x-0");
+
+      // Case 1: Click on the menu toggle button
+      if (target.closest("#menu-toggle-btn")) {
+        setMenuState(!isMenuOpen);
+        return;
+      }
+
+      // Case 2: Click on the close button
+      if (target.closest("#menu-close-btn")) {
+        setMenuState(false);
+        return;
+      }
+
+      // Case 3: Click on a mobile navigation link
+      const navLink = target.closest(".mobile-nav-link");
+      if (navLink && mobileMenu.contains(navLink)) {
+        e.preventDefault();
+        setMenuState(false);
+        // Navigate after the closing animation
+        setTimeout(() => {
+          const href = navLink.getAttribute("href");
+          if (href) {
+            window.location.href = href;
+          }
+        }, 300);
+      }
+    });
+  }
+</script>
+<style>
+  /* Smooth transitions for the mobile menu */
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+</style>

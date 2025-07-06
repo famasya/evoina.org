@@ -1,35 +1,88 @@
 ---
-import { getCollection } from "astro:content";
 import PageTitle from "../../components/PageTitle.astro";
 import { getLocaleFromUrl } from "../../i18n";
 import Layout from "../../layouts/Layout.astro";
 
 const locale = getLocaleFromUrl(Astro.url);
 
-// Get the committee-chairs page content for the current locale
-const committeeChairsPages = await getCollection("pages", ({ data }) => {
-  return data.locale === locale;
-});
+const committeeChairs = [
+  {
+    name: "Dr. Arif Maulana",
+    title: "Ketua",
+    affiliation: "Universitas Indonesia",
+    email: "arifmaulana@ises.org",
+    description:
+      "Spesialis taksonomi dan ekologi Arachnida Indonesia. Penelitiannya berfokus pada keanekaragaman laba-laba endemik dan peran mereka dalam ekosistem tropis Indonesia.",
+  },
+  {
+    name: "Dr. Nur Herjayanti",
+    title: "Wakil Ketua",
+    affiliation: "IPB University",
+    email: "nurherjayanti@ises.org",
+    description:
+      "Herpetolog dan entomolog yang fokus pada evolusi dan konservasi reptil dan serangga Indonesia. Aktif dalam penelitian keanekaragaman hayati Sulawesi.",
+  },
+  {
+    name: "Dr. Heru Handika",
+    title: "Sekretaris",
+    affiliation: "Louisiana State University",
+    email: "heruhandika@ises.org",
+    description:
+      "Peneliti mamalia kecil Indonesia dengan keahlian dalam filogenetika molekuler dan biogeografi. Spesialisasi dalam evolusi mamalia endemik Sulawesi dan Maluku.",
+  },
+  {
+    name: "Dr. Daniel Lumbantobing",
+    title: "Bendahara",
+    affiliation: "Universitas Sam Ratulangi",
+    email: "daniellumbantobing@ises.org",
+    description:
+      "Ihtiolog yang fokus pada sistematika dan evolusi ikan air tawar Indonesia. Penelitiannya berkontribusi pada pemahaman diversifikasi ikan endemik di Sulawesi.",
+  },
+  {
+    name: "Dr. Sarah Botanica",
+    title: "Koordinator Program",
+    affiliation: "Universitas Gadjah Mada",
+    email: "sarahbotanica@ises.org",
+    description:
+      "Botanis evolusi yang meneliti adaptasi tanaman tropis Indonesia. Berpengalaman dalam genomik komparatif dan ekologi molekuler tanaman hutan hujan.",
+  },
+];
 
-const committeeChairsPage = committeeChairsPages.find((page) =>
-  page.slug.endsWith("committee-chairs"),
-);
-
-if (!committeeChairsPage) {
-  throw new Error(`Committee Chairs page not found for locale: ${locale}`);
-}
-
-const { Content } = await committeeChairsPage.render();
+const joinUsLink = "#";
 ---
 
-<Layout title={committeeChairsPage.data.title}>
+<Layout title="Ketua Komite">
   <PageTitle
-    title={committeeChairsPage.data.page_title}
-    background={committeeChairsPage.data.background}
+    title="Ketua Komite"
+    background="/carousels/Haeromys_minahasae_HeruHandika.jpg"
   />
-  <main
-    class="auto-padding my-6 rounded-md font-light text-lg prose prose-lg max-w-none"
-  >
-    <Content />
+  <main class="auto-padding my-6 rounded-md font-light text-lg max-w-none">
+    {
+      committeeChairs.map((chair) => (
+        <section class="mb-8 border-b border-gray-300 pb-4 last:border-0 last:pb-0">
+          <h2 class="text-xl font-semibold mb-1">
+            {chair.name} - {chair.title}
+          </h2>
+          <p class="font-semibold">{chair.affiliation}</p>
+          <p>
+            📧{" "}
+            <a href={`mailto:${chair.email}`} class="text-blue-600 underline">
+              {chair.email}
+            </a>
+          </p>
+          <p class="mt-2">{chair.description}</p>
+        </section>
+      ))
+    }
+    <section class="mt-12">
+      <h2 class="text-xl font-semibold mb-2">Tertarik untuk bergabung?</h2>
+      <p>
+        Silakan lihat bagaimana Anda dapat berkontribusi dan pertimbangkan untuk
+        bergabung dengan kami di sini:
+      </p>
+      <p class="mt-2">
+        <a href={joinUsLink} class="text-blue-600 underline">BERGABUNG</a>
+      </p>
+    </section>
   </main>
 </Layout>

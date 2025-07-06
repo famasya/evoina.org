@@ -12,7 +12,10 @@ const currentLocale = getLocaleFromUrl(Astro.url);
 const translations = await loadTranslations(currentLocale);
 
 // Get all archive posts and sort by publication date (newest first)
-const allPosts = await getCollection("archives");
+const allPosts = await getCollection(
+  "archives",
+  ({ data }) => data.locale === currentLocale,
+);
 const sortedPosts = allPosts.sort(
   (a: CollectionEntry<"archives">, b: CollectionEntry<"archives">) =>
     b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -51,7 +54,12 @@ const dateLocale = currentLocale === "id" ? "id-ID" : "en-US";
               </time>
             </div>
 
-            <a href={getLocalizedUrl(`post/${post.slug}`, currentLocale)}>
+            <a
+              href={getLocalizedUrl(
+                `post/${post.slug.split("/").pop()}`,
+                currentLocale,
+              )}
+            >
               <h3 class="font-serif text-xl mb-3 text-night leading-tight">
                 {post.data.title}
               </h3>
@@ -62,7 +70,10 @@ const dateLocale = currentLocale === "id" ? "id-ID" : "en-US";
             </p>
 
             <a
-              href={getLocalizedUrl(`post/${post.slug}`, currentLocale)}
+              href={getLocalizedUrl(
+                `post/${post.slug.split("/").pop()}`,
+                currentLocale,
+              )}
               class="inline-flex items-center text-brunswick_green hover:text-brunswick_green-600 font-medium text-sm transition-colors duration-200"
             >
               {translations.buttons.read_more}
