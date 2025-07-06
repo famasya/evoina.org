@@ -2,39 +2,67 @@
 import { ChevronLeftCircle } from "@lucide/astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import PageTitle from "../../components/PageTitle.astro";
+import {
+  getLocaleFromUrl,
+  getLocalizedUrl,
+  loadTranslations,
+} from "../../i18n";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("archives", ({ data }) => {
-    return data.locale === "en";
-  });
-  const categories = [...new Set(posts.map((post) => post.data.category))];
-  return categories.map((category) => ({
-    params: { category },
-  }));
+  // Get all posts from both locales
+  const allPosts = await getCollection("archives");
+
+  // Get unique categories from all posts
+  const categories = [...new Set(allPosts.map((post) => post.data.category))];
+
+  // Generate paths for both locales
+  const paths = [];
+  for (const category of categories) {
+    // English path
+    paths.push({
+      params: { category },
+    });
+    // Indonesian path
+    paths.push({
+      params: { category },
+    });
+  }
+
+  return paths;
 }
+
+// Get current locale from URL
+const currentLocale = getLocaleFromUrl(Astro.url);
+const translations = await loadTranslations(currentLocale);
 
 const { category } = Astro.params;
 const posts = await getCollection("archives", ({ data }) => {
-  return data.category === category && data.locale === "en";
+  return data.category === category && data.locale === currentLocale;
 });
 
 const sortedPosts = posts.sort(
   (a: CollectionEntry<"archives">, b: CollectionEntry<"archives">) =>
     b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// Get localized date format
+const dateLocale = currentLocale === "id" ? "id-ID" : "en-US";
+const categoryLabel = currentLocale === "id" ? "Kategori" : "Category";
+const publishedLabel =
+  currentLocale === "id" ? "Dipublikasikan pada" : "Published on";
 ---
 
-<Layout title={`Archives: ${category}`}>
-  <PageTitle title={`Category: ${category}`} />
+<Layout title={`${currentLocale === "id" ? "Arsip" : "Archives"}: ${category}`}>
+  <PageTitle title={`${categoryLabel}: ${category}`} />
 
   <section class="py-12">
     <div class="container mx-auto px-4">
       <div class="mb-8 text-center">
         <a
-          href="/archives"
+          href={getLocalizedUrl("archives", currentLocale)}
           class="text-white bg-black hover:bg-black/80 transition-colors px-4 py-2 rounded-full flex items-center gap-2 w-fit"
-          ><ChevronLeftCircle /> Back to all archives</a
+          ><ChevronLeftCircle /> {translations.buttons.back_to_archives}</a
         >
       </div>
 
@@ -43,7 +71,10 @@ const sortedPosts = posts.sort(
           sortedPosts.map((post) => (
             <li>
               <a
-                href={`/post/${post.slug.split("/").pop() || post.slug}`}
+                href={getLocalizedUrl(
+                  `post/${post.slug.split("/").pop() || post.slug}`,
+                  currentLocale,
+                )}
                 class="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
                 {post.data.image && (
@@ -57,7 +88,8 @@ const sortedPosts = posts.sort(
                   <p class="text-sm text-gray-500 mb-2">{post.data.category}</p>
                   <h2 class="text-2xl font-serif mb-2">{post.data.title}</h2>
                   <p class="text-gray-600 mb-2">
-                    Published on: {post.data.pubDate.toLocaleDateString()}
+                    {publishedLabel}:{" "}
+                    {post.data.pubDate.toLocaleDateString(dateLocale)}
                   </p>
                   <p class="text-lg">{post.data.description}</p>
                 </div>

@@ -2,10 +2,27 @@
 import { Archive } from "@lucide/astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import PageTitle from "../components/PageTitle.astro";
+import { getLocaleFromUrl } from "../i18n";
 import Layout from "../layouts/Layout.astro";
 
+const locale = getLocaleFromUrl(Astro.url);
+
+// Get the archives page content for the current locale
+const archivesPages = await getCollection("pages", ({ data }) => {
+  return data.locale === locale;
+});
+
+const archivesPage = archivesPages.find((page) =>
+  page.slug.endsWith("archives"),
+);
+
+if (!archivesPage) {
+  throw new Error(`Archives page not found for locale: ${locale}`);
+}
+
+// Get posts for the current locale
 const posts = await getCollection("archives", ({ data }) => {
-  return data.locale === "en";
+  return data.locale === locale;
 });
 const categories = [...new Set(posts.map((post) => post.data.category))];
 
@@ -13,24 +30,31 @@ const sortedPosts = posts.sort(
   (a: CollectionEntry<"archives">, b: CollectionEntry<"archives">) =>
     b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// Localized text
+const allText = locale === "en" ? "All" : "Semua";
+const publishedText =
+  locale === "en" ? "Published on:" : "Dipublikasikan pada:";
+const postUrlPrefix = locale === "en" ? "/post/" : "/id/post/";
+const archivesUrlPrefix = locale === "en" ? "/archives" : "/id/arsip";
 ---
 
-<Layout title="Archives">
-  <PageTitle title="Archives" />
+<Layout title={archivesPage.data.title}>
+  <PageTitle title={archivesPage.data.page_title} />
 
   <section class="py-12">
     <div class="container mx-auto px-4">
       <div class="flex flex-wrap gap-2 mb-8 justify-center">
         <a
-          href="/archives"
+          href={archivesUrlPrefix}
           class="px-4 py-2 rounded-full border transition-colors bg-gray-800 text-white border-gray-800"
         >
-          All
+          {allText}
         </a>
         {
           categories.map((category) => (
             <a
-              href={`/archives/${category}`}
+              href={`${archivesUrlPrefix}/${category}`}
               class="px-4 py-2 rounded-full border transition-colors bg-white text-gray-800 border-gray-200 hover:bg-gray-50 flex items-center gap-2"
             >
               <Archive size={16} />
@@ -45,7 +69,7 @@ const sortedPosts = posts.sort(
           sortedPosts.map((post) => (
             <li>
               <a
-                href={`/post/${post.slug.split("/").pop() || post.slug}`}
+                href={`${postUrlPrefix}${post.slug.split("/").pop() || post.slug}`}
                 class="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
                 {post.data.image && (
@@ -59,7 +83,10 @@ const sortedPosts = posts.sort(
                   <p class="text-sm text-gray-500 mb-2">{post.data.category}</p>
                   <h2 class="text-2xl font-serif mb-2">{post.data.title}</h2>
                   <p class="text-gray-600 mb-2">
-                    Published on: {post.data.pubDate.toLocaleDateString()}
+                    {publishedText}{" "}
+                    {post.data.pubDate.toLocaleDateString(
+                      locale === "en" ? "en-US" : "id-ID",
+                    )}
                   </p>
                   <p class="text-lg">{post.data.description}</p>
                 </div>

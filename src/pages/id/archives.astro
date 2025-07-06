@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import PageTitle from "../../components/PageTitle.astro";
+import { getLocaleFromUrl } from "../../i18n";
+import Layout from "../../layouts/Layout.astro";
+
+const locale = getLocaleFromUrl(Astro.url);
+
+// Get the archives page content for the current locale
+const archivesPages = await getCollection("pages", ({ data }) => {
+  return data.locale === locale;
+});
+
+const archivesPage = archivesPages.find((page) =>
+  page.slug.endsWith("archives"),
+);
+
+if (!archivesPage) {
+  throw new Error(`Archives page not found for locale: ${locale}`);
+}
+
+const { Content } = await archivesPage.render();
+---
+
+<Layout title={archivesPage.data.title}>
+  <PageTitle
+    title={archivesPage.data.page_title}
+    background={archivesPage.data.background}
+  />
+  <main
+    class="auto-padding my-6 rounded-md font-light text-lg prose prose-lg max-w-none"
+  >
+    <Content />
+  </main>
+</Layout>

@@ -13,7 +13,13 @@
     "read_more": "Read more",
     "read_all_news": "Read All News & Updates",
     "what_we_do": "What We Do",
-    "back_to_archives": "Back to all archives"
+    "back_to_archives": "Back to all archives",
+    "download_program_book": "Download Program Book",
+    "coming_soon": "Coming Soon",
+    "access_dbspesies": "Access DBSpesies",
+    "in_development": "In Development",
+    "contact_us": "Contact Us",
+    "become_a_member": "Become a Member"
   },
   "labels": {
     "latest_news": "Latest News & Updates",
@@ -41,6 +47,203 @@
     "contribute_biodiversity": "Contribute to biodiversity database",
     "share_research": "Share your research data",
     "collaborate": "Collaborate with researchers"
+  },
+  "pages": {
+    "about": {
+      "title": "About Us",
+      "page_title": "About Us",
+      "content": {
+        "paragraph_1": "Since the early development of evolutionary studies, the Indonesian archipelago (then partially part of the Netherlands East Indies) has served as a source of inspiration and curiosity for foreign naturalists. One of the most notable figures is Alfred Russel Wallace, best known as the co-discoverer of the theory of natural selection. It was during his time in Ternate around 1858 that he experienced a moment of profound insight, which he later articulated in his famous \"Letter from Ternate.\"",
+        "paragraph_2": "From that letter to today, the idea of natural selection remains one of the most powerful forces that govern the patterns of biodiversity we observe today. However, despite Wallace's legacy and Indonesia's extraordinary biodiversity, the advancement of evolutionary studies in the country has fallen behind. Indonesia, a nation rich in both biological and cultural diversity, is no longer at the forefront of evolutionary research. This untapped potential is particularly concerning at a time when biodiversity faces unprecedented threats. Signatures of evolutionary history, formed over hundreds of millions of years, are at risk of disappearing before they can even be studied or understood.",
+        "paragraph_3": "Alongside the fading public memory of Wallace's legacy in Indonesia, understanding of evolution among the general public is hampered by misinformation and distorted representations of basic evolutionary principles. This creates a dual challenge:",
+        "challenge_1": "Policy-making becomes less informed in the absence of a strong evolutionary foundation, undermining efforts to manage and conserve biodiversity effectively,",
+        "challenge_2": "Education and outreach struggle, making it difficult to cultivate a new generation of Indonesian scientists who can appreciate and protect biodiversity through an evolutionary lens.",
+        "paragraph_4": "Even among professionals/students dedicated to evolutionary-related fields (such as systematics, ecology, evolutionary biology, genomics, and anthropology, etc) many are scattered across the globe with limited opportunities to connect or collaborate. Building a strong community starts with knowing each other. Connection is the first step toward advancing the field and fostering collaborative efforts to change the situation.",
+        "paragraph_5": "Indonesian Society for Evolutionary Studies (ISES) is an effort that we are hoping could contribute in helping to tackle the challenges and shape the future progress of the field in Indonesia. We aim to provide a forum for researchers and students interested in advancing our understanding of the origin, evolution, and maintenance of biodiversity in Indonesia, in hope that it could support collaborative research, promote dialogue across evolutionary-related disciplines, and enhance public understanding of our field. This organisation was initiated on 23 May 2024 through an online meeting with XX global participants invited to discuss the above-mentioned issues. The founding participants are:",
+        "founders": [
+          "Lala",
+          "Lili",
+          "Lulu"
+        ]
+      }
+    },
+    "programs": {
+      "title": "Programs",
+      "page_title": "Programs",
+      "core_programs_title": "ISES Core Programs",
+      "intro": "The Indonesian Society for Evolutionary Studies (ISES) runs various programs to advance evolutionary studies in Indonesia and build a strong research community.",
+      "membership": {
+        "title": "Membership & Networking",
+        "description": "ISES membership program connects researchers, students, and practitioners in evolutionary fields from across Indonesia and Indonesian diaspora abroad.",
+        "benefits": [
+          "Access to exclusive research resources",
+          "Priority registration for conferences and workshops",
+          "Research collaboration opportunities",
+          "Regular newsletters and updates"
+        ]
+      },
+      "dbspesies": {
+        "title": "DBSpesies",
+        "description": "A comprehensive Indonesian biodiversity database project, collecting species information from various sources to support evolutionary research.",
+        "features": [
+          "Species and distribution data contribution",
+          "Access to integrated database",
+          "Collaboration with research institutions",
+          "Biodiversity data standardization"
+        ]
+      },
+      "conferences": {
+        "title": "Conferences & Workshops",
+        "description": "Regular scientific meetings to share latest research, build collaborations, and develop researcher capacity.",
+        "activities": [
+          "Annual ISES conference",
+          "Research methodology workshops",
+          "Monthly online seminars",
+          "Evolutionary data analysis training"
+        ]
+      },
+      "education": {
+        "title": "Education & Outreach",
+        "description": "Educational programs to enhance public understanding of evolution and Indonesian biodiversity.",
+        "programs": [
+          "Educational materials for schools",
+          "Student mentoring programs",
+          "Public awareness campaigns",
+          "Media collaboration"
+        ]
+      },
+      "upcoming_programs_title": "Upcoming Programs",
+      "research_grants": {
+        "title": "Research Grants",
+        "description": "Grant program to support evolutionary research by young Indonesian researchers, focusing on local biodiversity."
+      },
+      "scientific_publication": {
+        "title": "Scientific Publication",
+        "description": "Development of ISES scientific journal to publish high-quality evolutionary research from Indonesia."
+      },
+      "participation": {
+        "title": "Interested in Participating?",
+        "description": "Join ISES programs and contribute to the advancement of evolutionary studies in Indonesia."
+      }
+    },
+    "committee_chairs": {
+      "title": "Committee Chairs",
+      "page_title": "Committee Chairs",
+      "members": [
+        {
+          "name": "Dr. Arif Maulana",
+          "title": "Chair",
+          "description": "Specialist in Indonesian Arachnida taxonomy and ecology. His research focuses on endemic spider diversity and their role in Indonesian tropical ecosystems.",
+          "university": "University of Indonesia",
+          "contact": "arifmaulana@ises.org"
+        },
+        {
+          "name": "Dr. Nur Herjayanti",
+          "title": "Vice Chair",
+          "description": "Herpetologist and entomologist focusing on evolution and conservation of Indonesian reptiles and insects. Active in Sulawesi biodiversity research.",
+          "university": "IPB University",
+          "contact": "nurherjayanti@ises.org"
+        },
+        {
+          "name": "Dr. Heru Handika",
+          "title": "Secretary",
+          "description": "Indonesian small mammal researcher with expertise in molecular phylogenetics and biogeography. Specializes in endemic mammal evolution of Sulawesi and Maluku.",
+          "university": "Louisiana State University",
+          "contact": "heruhandika@ises.org"
+        },
+        {
+          "name": "Dr. Daniel Lumbantobing",
+          "title": "Treasurer",
+          "description": "Ichthyologist focusing on systematics and evolution of Indonesian freshwater fish. His research contributes to understanding endemic fish diversification in Sulawesi.",
+          "university": "Sam Ratulangi University",
+          "contact": "daniellumbantobing@ises.org"
+        },
+        {
+          "name": "Dr. Sarah Botanica",
+          "title": "Program Coordinator",
+          "description": "Evolutionary botanist researching Indonesian tropical plant adaptations. Experienced in comparative genomics and molecular ecology of rainforest plants.",
+          "university": "Gadjah Mada University",
+          "contact": "sarahbotanica@ises.org"
+        }
+      ],
+      "call_to_action": {
+        "title": "Interested in being part of the effort?",
+        "description": "Please take a look at how you can contribute and consider joining us here:"
+      }
+    },
+    "resources": {
+      "title": "Resources",
+      "page_title": "Resources",
+      "intro_title": "ISES Resources",
+      "intro": "Access various resources provided by the Indonesian Society for Evolutionary Studies to support research and learning in evolutionary fields.",
+      "publications": {
+        "title": "Publications & Documents",
+        "program_book": {
+          "title": "ISES Program Book",
+          "description": "Complete guide to Indonesian Society for Evolutionary Studies programs and activities."
+        },
+        "membership_guide": {
+          "title": "Membership Guide",
+          "description": "Complete information about ISES membership benefits and procedures."
+        }
+      },
+      "databases": {
+        "title": "Databases & Tools",
+        "dbspesies": {
+          "title": "DBSpesies",
+          "description": "Comprehensive and integrated Indonesian biodiversity database."
+        },
+        "member_portal": {
+          "title": "Member Portal",
+          "description": "Exclusive member platform for accessing resources and collaboration."
+        }
+      },
+      "educational": {
+        "title": "Educational Materials",
+        "learning_modules": {
+          "title": "Learning Modules",
+          "description": "Evolution learning materials for various educational levels."
+        },
+        "educational_videos": {
+          "title": "Educational Videos",
+          "description": "Collection of educational videos about evolution and Indonesian biodiversity."
+        }
+      },
+      "training": {
+        "title": "Training & Workshops",
+        "workshop_materials": {
+          "title": "Workshop Materials",
+          "description": "Presentation slides and materials from past ISES workshops."
+        },
+        "methodology_guides": {
+          "title": "Methodology Guides",
+          "description": "Practical guides for evolutionary research methodology and data analysis."
+        }
+      },
+      "external_resources_title": "External Resources",
+      "international_databases": {
+        "title": "International Databases",
+        "items": [
+          "GBIF (Global Biodiversity Information Facility)",
+          "NCBI GenBank",
+          "Tree of Life Web Project",
+          "Encyclopedia of Life (EOL)"
+        ]
+      },
+      "journals": {
+        "title": "Journals & Publications",
+        "items": [
+          "Evolution",
+          "Molecular Biology and Evolution",
+          "Systematic Biology",
+          "Journal of Biogeography"
+        ]
+      },
+      "need_resources": {
+        "title": "Need Specific Resources?",
+        "description": "Contact us if you need access to specific resources or have suggestions for developing the ISES resource collection."
+      }
+    }
   },
   "meta": {
     "site_description": "The Indonesian Society for Evolutionary Studies (ISES)",

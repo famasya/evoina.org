@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import PageTitle from "../../components/PageTitle.astro";
+import { getLocaleFromUrl } from "../../i18n";
+import Layout from "../../layouts/Layout.astro";
+
+const locale = getLocaleFromUrl(Astro.url);
+
+// Get the committee-chairs page content for the current locale
+const committeeChairsPages = await getCollection("pages", ({ data }) => {
+  return data.locale === locale;
+});
+
+const committeeChairsPage = committeeChairsPages.find((page) =>
+  page.slug.endsWith("committee-chairs"),
+);
+
+if (!committeeChairsPage) {
+  throw new Error(`Committee Chairs page not found for locale: ${locale}`);
+}
+
+const { Content } = await committeeChairsPage.render();
+---
+
+<Layout title={committeeChairsPage.data.title}>
+  <PageTitle
+    title={committeeChairsPage.data.page_title}
+    background={committeeChairsPage.data.background}
+  />
+  <main
+    class="auto-padding my-6 rounded-md font-light text-lg prose prose-lg max-w-none"
+  >
+    <Content />
+  </main>
+</Layout>

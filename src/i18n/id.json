@@ -13,7 +13,13 @@
     "read_more": "Baca selengkapnya",
     "read_all_news": "Baca Semua Berita & Pembaruan",
     "what_we_do": "Apa yang Kami Lakukan",
-    "back_to_archives": "Kembali ke semua arsip"
+    "back_to_archives": "Kembali ke semua arsip",
+    "download_program_book": "Unduh Buku Program",
+    "coming_soon": "Segera Tersedia",
+    "access_dbspesies": "Akses DBSpesies",
+    "in_development": "Dalam Pengembangan",
+    "contact_us": "Hubungi Kami",
+    "become_a_member": "Bergabung sebagai Anggota"
   },
   "labels": {
     "latest_news": "Berita & Pembaruan Terbaru",
@@ -41,6 +47,203 @@
     "contribute_biodiversity": "Berkontribusi pada basis data keanekaragaman hayati",
     "share_research": "Bagikan data penelitian Anda",
     "collaborate": "Berkolaborasi dengan peneliti"
+  },
+  "pages": {
+    "about": {
+      "title": "Tentang Kami",
+      "page_title": "Tentang Kami",
+      "content": {
+        "paragraph_1": "Sejak perkembangan awal studi evolusi, kepulauan Indonesia (yang saat itu sebagian merupakan bagian dari Hindia Belanda) telah menjadi sumber inspirasi dan keingintahuan bagi naturalis asing. Salah satu tokoh paling terkenal adalah Alfred Russel Wallace, yang dikenal sebagai co-discoverer teori seleksi alam. Pada masa tinggalnya di Ternate sekitar tahun 1858, ia mengalami momen wawasan mendalam, yang kemudian ia artikulasikan dalam \"Surat dari Ternate\" yang terkenal.",
+        "paragraph_2": "Dari surat tersebut hingga hari ini, ide seleksi alam tetap menjadi salah satu kekuatan paling kuat yang mengatur pola keanekaragaman hayati yang kita amati saat ini. Namun, meskipun warisan Wallace dan keanekaragaman hayati Indonesia yang luar biasa, kemajuan studi evolusi di negara ini telah tertinggal. Indonesia, negara yang kaya akan keanekaragaman biologis dan budaya, tidak lagi berada di garis depan penelitian evolusi. Potensi yang belum dimanfaatkan ini sangat mengkhawatirkan pada saat keanekaragaman hayati menghadapi ancaman yang belum pernah terjadi sebelumnya. Tanda-tanda sejarah evolusi, yang terbentuk selama ratusan juta tahun, berisiko menghilang sebelum dapat dipelajari atau dipahami.",
+        "paragraph_3": "Bersamaan dengan memudarnya memori publik tentang warisan Wallace di Indonesia, pemahaman evolusi di kalangan masyarakat umum terhambat oleh misinformasi dan representasi yang terdistorsi dari prinsip-prinsip evolusi dasar. Ini menciptakan tantangan ganda:",
+        "challenge_1": "Pembuatan kebijakan menjadi kurang terinformasi tanpa adanya fondasi evolusi yang kuat, merusak upaya untuk mengelola dan melestarikan keanekaragaman hayati secara efektif,",
+        "challenge_2": "Pendidikan dan penjangkauan mengalami kesulitan, sehingga sulit untuk menumbuhkan generasi baru ilmuwan Indonesia yang dapat menghargai dan melindungi keanekaragaman hayati melalui lensa evolusi.",
+        "paragraph_4": "Bahkan di antara profesional/mahasiswa yang berdedikasi pada bidang terkait evolusi (seperti sistematika, ekologi, biologi evolusi, genomik, dan antropologi, dll) banyak yang tersebar di seluruh dunia dengan peluang terbatas untuk terhubung atau berkolaborasi. Membangun komunitas yang kuat dimulai dengan saling mengenal. Koneksi adalah langkah pertama menuju kemajuan bidang dan mendorong upaya kolaboratif untuk mengubah situasi.",
+        "paragraph_5": "Indonesian Society for Evolutionary Studies (ISES) adalah upaya yang kami harapkan dapat berkontribusi dalam membantu mengatasi tantangan dan membentuk kemajuan masa depan bidang ini di Indonesia. Kami bertujuan untuk menyediakan forum bagi peneliti dan mahasiswa yang tertarik untuk memajukan pemahaman kita tentang asal-usul, evolusi, dan pemeliharaan keanekaragaman hayati di Indonesia, dengan harapan dapat mendukung penelitian kolaboratif, mempromosikan dialog lintas disiplin ilmu yang berkaitan dengan evolusi, dan meningkatkan pemahaman publik tentang bidang kami. Organisasi ini dimulai pada 23 Mei 2024 melalui pertemuan online dengan XX peserta global yang diundang untuk membahas isu-isu yang disebutkan di atas. Para peserta pendiri adalah:",
+        "founders": [
+          "Lala",
+          "Lili",
+          "Lulu"
+        ]
+      }
+    },
+    "programs": {
+      "title": "Program",
+      "page_title": "Program",
+      "core_programs_title": "Program Utama ISES",
+      "intro": "Indonesian Society for Evolutionary Studies (ISES) menjalankan berbagai program untuk memajukan studi evolusi di Indonesia dan membangun komunitas peneliti yang kuat.",
+      "membership": {
+        "title": "Keanggotaan & Jaringan",
+        "description": "Program keanggotaan ISES menghubungkan peneliti, mahasiswa, dan praktisi di bidang evolusi dari seluruh Indonesia dan diaspora Indonesia di luar negeri.",
+        "benefits": [
+          "Akses ke sumber daya penelitian eksklusif",
+          "Prioritas pendaftaran untuk konferensi dan workshop",
+          "Peluang kolaborasi penelitian",
+          "Newsletter dan pembaruan berkala"
+        ]
+      },
+      "dbspesies": {
+        "title": "DBSpesies",
+        "description": "Proyek basis data keanekaragaman hayati Indonesia yang komprehensif, mengumpulkan informasi spesies dari berbagai sumber untuk mendukung penelitian evolusi.",
+        "features": [
+          "Kontribusi data spesies dan distribusi",
+          "Akses ke database terintegrasi",
+          "Kolaborasi dengan institusi penelitian",
+          "Standarisasi data keanekaragaman hayati"
+        ]
+      },
+      "conferences": {
+        "title": "Konferensi & Workshop",
+        "description": "Menyelenggarakan pertemuan ilmiah berkala untuk berbagi penelitian terbaru, membangun kolaborasi, dan mengembangkan kapasitas peneliti.",
+        "activities": [
+          "Konferensi tahunan ISES",
+          "Workshop metodologi penelitian",
+          "Seminar online bulanan",
+          "Pelatihan analisis data evolusi"
+        ]
+      },
+      "education": {
+        "title": "Pendidikan & Outreach",
+        "description": "Program edukasi untuk meningkatkan pemahaman publik tentang evolusi dan keanekaragaman hayati Indonesia.",
+        "programs": [
+          "Materi edukasi untuk sekolah",
+          "Program mentoring mahasiswa",
+          "Kampanye kesadaran publik",
+          "Kolaborasi dengan media"
+        ]
+      },
+      "upcoming_programs_title": "Program Mendatang",
+      "research_grants": {
+        "title": "Hibah Penelitian",
+        "description": "Program hibah untuk mendukung penelitian evolusi oleh peneliti muda Indonesia, dengan fokus pada keanekaragaman hayati lokal."
+      },
+      "scientific_publication": {
+        "title": "Publikasi Ilmiah",
+        "description": "Pengembangan jurnal ilmiah ISES untuk mempublikasikan penelitian evolusi berkualitas tinggi dari Indonesia."
+      },
+      "participation": {
+        "title": "Tertarik Berpartisipasi?",
+        "description": "Bergabunglah dengan program-program ISES dan berkontribusi pada kemajuan studi evolusi di Indonesia."
+      }
+    },
+    "committee_chairs": {
+      "title": "Ketua Komite",
+      "page_title": "Ketua Komite",
+      "members": [
+        {
+          "name": "Dr. Arif Maulana",
+          "title": "Ketua",
+          "description": "Spesialis dalam taksonomi dan ekologi Arachnida Indonesia. Penelitiannya berfokus pada keanekaragaman laba-laba endemik dan perannya dalam ekosistem tropis Indonesia.",
+          "university": "Universitas Indonesia",
+          "contact": "arifmaulana@ises.org"
+        },
+        {
+          "name": "Dr. Nur Herjayanti",
+          "title": "Wakil Ketua",
+          "description": "Ahli herpetologi dan entomologi dengan fokus pada evolusi dan konservasi reptil dan serangga Indonesia. Aktif dalam penelitian keanekaragaman hayati Sulawesi.",
+          "university": "Institut Pertanian Bogor",
+          "contact": "nurherjayanti@ises.org"
+        },
+        {
+          "name": "Dr. Heru Handika",
+          "title": "Sekretaris",
+          "description": "Peneliti mamalia kecil Indonesia dengan keahlian dalam filogenetik molekuler dan biogeografi. Spesialisasi pada evolusi mamalia endemik Sulawesi dan Maluku.",
+          "university": "Louisiana State University",
+          "contact": "heruhandika@ises.org"
+        },
+        {
+          "name": "Dr. Daniel Lumbantobing",
+          "title": "Bendahara",
+          "description": "Iktiolog dengan fokus pada sistematika dan evolusi ikan air tawar Indonesia. Penelitiannya berkontribusi pada pemahaman diversifikasi ikan endemik Sulawesi.",
+          "university": "Universitas Sam Ratulangi",
+          "contact": "daniellumbantobing@ises.org"
+        },
+        {
+          "name": "Dr. Sarah Botanica",
+          "title": "Koordinator Program",
+          "description": "Ahli botani evolusioner yang meneliti adaptasi tumbuhan tropis Indonesia. Berpengalaman dalam genomik komparatif dan ekologi molekuler tumbuhan hutan hujan.",
+          "university": "Universitas Gadjah Mada",
+          "contact": "sarahbotanica@ises.org"
+        }
+      ],
+      "call_to_action": {
+        "title": "Tertarik menjadi bagian dari upaya ini?",
+        "description": "Silakan lihat bagaimana Anda dapat berkontribusi dan pertimbangkan untuk bergabung dengan kami di sini:"
+      }
+    },
+    "resources": {
+      "title": "Sumber Daya",
+      "page_title": "Sumber Daya",
+      "intro_title": "Sumber Daya ISES",
+      "intro": "Akses berbagai sumber daya yang disediakan oleh Indonesian Society for Evolutionary Studies untuk mendukung penelitian dan pembelajaran di bidang evolusi.",
+      "publications": {
+        "title": "Publikasi & Dokumen",
+        "program_book": {
+          "title": "Buku Program ISES",
+          "description": "Panduan lengkap program dan kegiatan Indonesian Society for Evolutionary Studies."
+        },
+        "membership_guide": {
+          "title": "Panduan Keanggotaan",
+          "description": "Informasi lengkap tentang manfaat dan prosedur keanggotaan ISES."
+        }
+      },
+      "databases": {
+        "title": "Database & Tools",
+        "dbspesies": {
+          "title": "DBSpesies",
+          "description": "Database keanekaragaman hayati Indonesia yang komprehensif dan terintegrasi."
+        },
+        "member_portal": {
+          "title": "Portal Anggota",
+          "description": "Platform khusus anggota untuk akses sumber daya eksklusif dan kolaborasi."
+        }
+      },
+      "educational": {
+        "title": "Materi Edukasi",
+        "learning_modules": {
+          "title": "Modul Pembelajaran",
+          "description": "Materi pembelajaran evolusi untuk berbagai tingkat pendidikan."
+        },
+        "educational_videos": {
+          "title": "Video Edukasi",
+          "description": "Koleksi video pembelajaran tentang evolusi dan keanekaragaman hayati Indonesia."
+        }
+      },
+      "training": {
+        "title": "Pelatihan & Workshop",
+        "workshop_materials": {
+          "title": "Materi Workshop",
+          "description": "Slide presentasi dan materi dari workshop ISES yang telah berlangsung."
+        },
+        "methodology_guides": {
+          "title": "Panduan Metodologi",
+          "description": "Panduan praktis untuk metodologi penelitian evolusi dan analisis data."
+        }
+      },
+      "external_resources_title": "Sumber Daya Eksternal",
+      "international_databases": {
+        "title": "Database Internasional",
+        "items": [
+          "GBIF (Global Biodiversity Information Facility)",
+          "NCBI GenBank",
+          "Tree of Life Web Project",
+          "Encyclopedia of Life (EOL)"
+        ]
+      },
+      "journals": {
+        "title": "Jurnal & Publikasi",
+        "items": [
+          "Evolution",
+          "Molecular Biology and Evolution",
+          "Systematic Biology",
+          "Journal of Biogeography"
+        ]
+      },
+      "need_resources": {
+        "title": "Butuh Sumber Daya Khusus?",
+        "description": "Hubungi kami jika Anda membutuhkan akses ke sumber daya khusus atau memiliki saran untuk pengembangan koleksi sumber daya ISES."
+      }
+    }
   },
   "meta": {
     "site_description": "Indonesian Society for Evolutionary Studies (ISES)",

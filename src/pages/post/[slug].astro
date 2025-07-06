@@ -1,13 +1,17 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import PostHeader from "../../components/PostHeader.astro";
+import { getLocaleFromUrl, loadTranslations } from "../../i18n";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const archiveEntries = await getCollection("archives", ({ data }) => {
+  // Get all archive entries for English locale only
+  const allArchiveEntries = await getCollection("archives", ({ data }) => {
     return data.locale === "en";
   });
-  return archiveEntries.map((entry: CollectionEntry<"archives">) => ({
+
+  // Generate paths for English entries
+  return allArchiveEntries.map((entry: CollectionEntry<"archives">) => ({
     params: { slug: entry.slug.split("/").pop() || entry.slug },
     props: { entry },
   }));
@@ -19,6 +23,14 @@ type Props = {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+// Get current locale from URL
+const currentLocale = getLocaleFromUrl(Astro.url);
+const translations = await loadTranslations(currentLocale);
+
+// Get the click to enlarge text based on locale
+const clickToEnlargeText =
+  currentLocale === "id" ? "Klik untuk memperbesar" : "Click to enlarge";
 ---
 
 <Layout title={entry.data.title}>
@@ -40,7 +52,7 @@ const { Content } = await entry.render();
                 class="w-full h-auto object-cover rounded-lg mb-1"
               />
               <div class="text-xs text-center hover:text-brunswick_green transition-colors">
-                Click to enlarge
+                {clickToEnlargeText}
               </div>
             </a>
           </div>

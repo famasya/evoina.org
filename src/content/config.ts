@@ -12,6 +12,17 @@ const archivesCollection = defineCollection({
   }),
 });
 
+const pagesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    page_title: z.string(),
+    locale: z.enum(['en', 'id']),
+    background: z.string().optional(),
+  }),
+});
+
 export const collections = {
   'archives': archivesCollection,
+  'pages': pagesCollection,
 };
