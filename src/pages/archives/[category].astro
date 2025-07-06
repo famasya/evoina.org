@@ -2,7 +2,7 @@
 import { ChevronLeftCircle } from "@lucide/astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import PageTitle from "../../components/page-title.astro";
-import Layout from "../../layouts/layout.astro";
+import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("archives", ({ data }) => {

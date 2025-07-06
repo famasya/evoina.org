@@ -3,11 +3,10 @@ import { Icon } from "astro-icon/components";
 import type { SupportedLocale, Translations } from "../i18n";
 
 interface Props {
-  currentLocale: SupportedLocale;
   translations: Translations;
 }
 
-const { currentLocale, translations } = Astro.props;
+const { translations } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
